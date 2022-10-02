@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "215436463586",
+    "project_id": "flutix-5f0a5",
+    "storage_bucket": "flutix-5f0a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:215436463586:android:9a9fc19317194ae6c9bdbb",
+        "android_client_info": {
+          "package_name": "com.example.bwa_flutix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "215436463586-8kelftu165jc930kclsn7tp6am6pl2r3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAfe-rnHMfGyipI_vxMlyCChdMO_SJdyo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "215436463586-8kelftu165jc930kclsn7tp6am6pl2r3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
