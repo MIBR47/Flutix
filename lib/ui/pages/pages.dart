@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:bwa_flutix/models/models.dart';
 import 'package:bwa_flutix/shared/shared.dart';
+import 'package:bwa_flutix/ui/widgets/widgets.dart';
 import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,13 +30,13 @@ part 'preference_page.dart';
 
 Future<XFile?> getImage() async {
   final ImagePicker _picker = ImagePicker();
+  final XFile? pickedFile;
+  pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+  // if ((pickedFile = await _picker.pickImage(source: ImageSource.gallery)) !=
+  //     null) {
+  //   // img = File(pickedFile.path);
 
-  final XFile? pickedFile =
-      await _picker.pickImage(source: ImageSource.gallery);
-
-  if (pickedFile != null) {
-    // img = File(pickedFile.path);
-    return pickedFile;
-  }
-  return null;
+  // }
+  return pickedFile;
+  // return null;
 }

@@ -38,9 +38,9 @@ class _SignUpPageState extends State<SignUpPage> {
       onWillPop: () async {
         context.read<PageBloc>().add(GoToSplashPageEvent());
         if (Navigator.of(context).userGestureInProgress)
-          return null!;
+          return Future<bool>.value(true);
         else
-          return null!;
+          return Future<bool>.value(false);
       },
       child: Scaffold(
           body: Container(
@@ -84,25 +84,7 @@ class _SignUpPageState extends State<SignUpPage> {
               const SizedBox(
                 height: 30,
               ),
-              FloatingActionButton(
-                backgroundColor: mainColor,
-                elevation: 2,
-                child: const Icon(Icons.arrow_forward),
-                onPressed: () {
-                  // if (!(nameController.text.trim() != "" &&
-                  //     emailController.text.trim() != "" &&
-                  //     passwordController.text.trim() != "" &&
-                  //     retypePasswordController.text.trim() != "")) {
-                  //   Flushbar(
-                  //     duration: const Duration(milliseconds: 1500),
-                  //     flushbarPosition: FlushbarPosition.TOP,
-                  //     backgroundColor: const Color(0xFFff5c83),
-                  //     message: "Please fill all the fields",
-                  //     // ignore: use_build_context_synchronously
-                  //   ).show(context);
-                  // }
-                },
-              )
+              button(),
             ],
           )
         ]),
@@ -135,9 +117,12 @@ class _SignUpPageState extends State<SignUpPage> {
                 onTap: () async {
                   if (widget.registrationData.profileImage == null) {
                     XFile? img = await getImage();
+
                     if (img != null) {
                       File selectedImg = File(img.path);
                       widget.registrationData.profileImage = selectedImg;
+                    } else {
+                      widget.registrationData.profileImage = null;
                     }
                   } else {
                     widget.registrationData.profileImage = null;
@@ -232,6 +217,36 @@ class _SignUpPageState extends State<SignUpPage> {
           },
         ),
       ],
+    );
+  }
+
+  Widget button() {
+    return FloatingActionButton(
+      backgroundColor: mainColor,
+      elevation: 2,
+      child: const Icon(Icons.arrow_forward),
+      onPressed: () {
+        if (!(nameController.text.trim() != "" &&
+            emailController.text.trim() != "" &&
+            passwordController.text.trim() != "" &&
+            retypePasswordController.text.trim() != "")) {
+          Flushbar(
+            duration: const Duration(milliseconds: 1500),
+            flushbarPosition: FlushbarPosition.TOP,
+            backgroundColor: const Color(0xFFff5c83),
+            message: "Please fill all the fields",
+            // ignore: use_build_context_synchronously
+          ).show(context);
+        } else {
+          widget.registrationData.name = nameController.text.trim();
+          widget.registrationData.email = emailController.text.trim();
+          widget.registrationData.password = passwordController.text.trim();
+
+          context
+              .read<PageBloc>()
+              .add(GoToPreferencesPageEvent(widget.registrationData));
+        }
+      },
     );
   }
 }
