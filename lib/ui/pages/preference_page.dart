@@ -98,7 +98,7 @@ class _PreferencesPageState extends State<PreferencesPage> {
                       elevation: 2,
                       child: const Icon(Icons.arrow_forward),
                       onPressed: () {
-                        if (selectedGenres != 4) {
+                        if (selectedGenres.length != 4) {
                           Flushbar(
                             duration: const Duration(milliseconds: 1500),
                             flushbarPosition: FlushbarPosition.TOP,

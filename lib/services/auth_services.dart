@@ -36,15 +36,15 @@ class AuthServices {
 
       return SignInSignUpResult(user: user);
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print(e.code);
-      } else if (e.code == 'email-already-in-use') {
-        print(e.code);
-      } else if (e.code == 'user-not-found') {
-        print(e.code);
-      } else if (e.code == 'wrong-password') {
-        print(e.code);
-      }
+      // if (e.code == 'weak-password') {
+      //   print(e.code);
+      // } else if (e.code == 'email-already-in-use') {
+      //   print(e.code);
+      // } else if (e.code == 'user-not-found') {
+      //   print(e.code);
+      // } else if (e.code == 'wrong-password') {
+      //   print(e.code);
+      // }
       return SignInSignUpResult(message: e);
     }
   }

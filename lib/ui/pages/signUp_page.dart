@@ -228,8 +228,8 @@ class _SignUpPageState extends State<SignUpPage> {
       onPressed: () {
         if (!(nameController.text.trim() != "" &&
             emailController.text.trim() != "" &&
-            passwordController.text.trim() != "" &&
-            retypePasswordController.text.trim() != "")) {
+            passwordController.text != "" &&
+            retypePasswordController.text != "")) {
           Flushbar(
             duration: const Duration(milliseconds: 1500),
             flushbarPosition: FlushbarPosition.TOP,
@@ -238,13 +238,23 @@ class _SignUpPageState extends State<SignUpPage> {
             // ignore: use_build_context_synchronously
           ).show(context);
         } else {
-          widget.registrationData.name = nameController.text.trim();
-          widget.registrationData.email = emailController.text.trim();
-          widget.registrationData.password = passwordController.text.trim();
+          if (passwordController.text == retypePasswordController.text) {
+            widget.registrationData.name = nameController.text.trim();
+            widget.registrationData.email = emailController.text.trim();
+            widget.registrationData.password = passwordController.text.trim();
 
-          context
-              .read<PageBloc>()
-              .add(GoToPreferencesPageEvent(widget.registrationData));
+            context
+                .read<PageBloc>()
+                .add(GoToPreferencesPageEvent(widget.registrationData));
+          } else {
+            Flushbar(
+              duration: const Duration(milliseconds: 1500),
+              flushbarPosition: FlushbarPosition.TOP,
+              backgroundColor: const Color(0xFFff5c83),
+              message: "password doesn't match",
+              // ignore: use_build_context_synchronously
+            ).show(context);
+          }
         }
       },
     );

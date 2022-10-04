@@ -7,3 +7,4 @@ import 'package:bwa_flutix/extension/extensions.dart';
 
 part 'auth_services.dart';
 part 'user_services.dart';
+part 'movie_services.dart';

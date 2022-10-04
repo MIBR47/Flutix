@@ -5,12 +5,13 @@ class MoviePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool uploadImageLoading = false;
     return ListView(
       children: [
         Container(
           decoration: BoxDecoration(
             color: accentColor1,
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               bottomLeft: Radius.circular(20),
               bottomRight: Radius.circular(20),
             ),
@@ -18,6 +19,20 @@ class MoviePage extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(defaulMargin, 20, defaulMargin, 30),
           child: BlocBuilder<UserBloc, UserState>(builder: (_, userState) {
             if (userState is UserLoadedState) {
+              uploadImageLoading = false;
+              if (imageFileToUpload != null) {
+                uploadImage(imageFileToUpload!).then(
+                  (downloadURL) {
+                    print(downloadURL);
+
+                    context
+                        .read<UserBloc>()
+                        .add(UpdateDataEvent(profileImage: downloadURL));
+                    imageFileToUpload = null;
+                    uploadImageLoading = false;
+                  },
+                );
+              }
               return Row(
                 children: [
                   Container(
@@ -31,23 +46,26 @@ class MoviePage extends StatelessWidget {
                     ),
                     child: Stack(
                       children: [
-                        SpinKitFadingCircle(
-                          color: accentColor2,
-                          size: 50,
-                        ),
+                        uploadImageLoading == true
+                            ? SpinKitCircle(
+                                color: accentColor2,
+                                size: 50,
+                              )
+                            : Container(),
                         Container(
                           width: 50,
                           height: 50,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
+                              fit: BoxFit.cover,
                               image: (userState.user.profilePicture == "")
                                   ? AssetImage("assets/user_pic.png")
                                   : NetworkImage(userState.user.profilePicture!)
                                       as ImageProvider,
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -93,3 +111,8 @@ class MoviePage extends StatelessWidget {
     );
   }
 }
+
+// Future test(String dowloadURL) async {
+//    UserModel updatedUser = copyWith(name: event.name, profilePicture: event.profileImage);
+//   await UserServices.updateUserPicture(updatedUser);
+// }

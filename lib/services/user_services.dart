@@ -8,13 +8,30 @@ class UserServices {
     // for (var genre in user.selectedGenres!) {
     //   genres += genre + ((genre != user.selectedGenres?.last) ? ', ' : '');
     // }
-    _userCollection.doc(user.id).set({
-      'email': user.email,
-      'name': user.name,
+    try {
+      _userCollection.doc(user.id).set({
+        'email': user.email,
+        'name': user.name,
+        'balance': user.balance,
+        'selectedGenres': user.selectedGenres,
+        'selectedLanguage': user.selectedLanguage,
+        'profileImage': user.profilePicture ?? '',
+      }, SetOptions(merge: true));
+    } catch (e) {
+      print("test gagal");
+      print(e);
+    }
+  }
+
+  static Future<void> updateUserPicture(UserModel user) async {
+    // String genres = '';
+    // for (var genre in user.selectedGenres!) {
+    //   genres += genre + ((genre != user.selectedGenres?.last) ? ', ' : '');
+    // }
+    _userCollection.doc(user.id).update({
+      'name': "update test",
       'balance': user.balance,
-      'selectedGenres': user.selectedGenres,
-      'selectedLanguage': user.selectedLanguage,
-      'profileImage': user.profilePicture ?? '',
+      'profileImage': user.profilePicture,
     });
   }
 

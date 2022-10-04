@@ -27,16 +27,3 @@ part 'movie_page.dart';
 part 'account_confirmation_page.dart';
 part 'signUp_page.dart';
 part 'preference_page.dart';
-
-Future<XFile?> getImage() async {
-  final ImagePicker _picker = ImagePicker();
-  final XFile? pickedFile;
-  pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-  // if ((pickedFile = await _picker.pickImage(source: ImageSource.gallery)) !=
-  //     null) {
-  //   // img = File(pickedFile.path);
-
-  // }
-  return pickedFile;
-  // return null;
-}

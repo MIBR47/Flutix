@@ -33,7 +33,10 @@ class Wrapper extends StatelessWidget {
                   : (pageState is OnPreferencesPageState)
                       ? PreferencesPage(
                           registrationData: pageState.registrationData)
-                      : MainPage(),
+                      : (pageState is OnAccountInformationPageState)
+                          ? AccountConfirmationPage(
+                              registrationData: pageState.registrationData)
+                          : MainPage(),
     );
   }
 }

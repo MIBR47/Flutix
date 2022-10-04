@@ -30,5 +30,15 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<SignOutEvent>(
       (event, emit) async => emit(UserInitialState()),
     );
+
+    on<UpdateDataEvent>((event, emit) async {
+      UserModel updatedUser = (state as UserLoadedState)
+          .user
+          .copyWith(name: event.name, profilePicture: event.profileImage);
+      print(event.profileImage);
+      await UserServices.updateUser(updatedUser);
+
+      emit(UserLoadedState(updatedUser));
+    });
   }
 }
