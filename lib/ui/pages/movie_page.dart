@@ -107,6 +107,43 @@ class MoviePage extends StatelessWidget {
             }
           }),
         ),
+        Container(
+          margin: EdgeInsets.fromLTRB(defaulMargin, 30, defaulMargin, 12),
+          child: Text(
+            "Now Playing",
+            style: blackTextFont.copyWith(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 140,
+          child: BlocBuilder<MovieBloc, MovieState>(
+            builder: (_, movieState) {
+              if (movieState is MovieLoadedState) {
+                List<MovieModel> movies = movieState.movies.sublist(0, 10);
+                print(movies[1].title);
+                return ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: movies.length,
+                  itemBuilder: (_, index) {
+                    return Container(
+                      margin: EdgeInsets.all(5),
+                      child: Text(movies[index].title!),
+                    );
+                  },
+                );
+              } else {
+                return SpinKitFadingCircle(
+                  color: mainColor,
+                  size: 50,
+                );
+              }
+              // return Container();
+            },
+          ),
+        )
       ],
     );
   }

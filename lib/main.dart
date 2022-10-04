@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => PageBloc()),
           BlocProvider(create: (_) => UserBloc()),
           BlocProvider(create: (_) => ThemeBloc()),
+          BlocProvider(create: (_) => MovieBloc()..add(FetchMoviesEvent())),
         ],
         child: BlocBuilder<ThemeBloc, ThemeState>(
           builder: (context, themeState) {

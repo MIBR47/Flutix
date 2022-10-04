@@ -1,21 +1,32 @@
 part of 'models.dart';
 
 class MovieModel {
-  final int id;
-  final String title;
-  final double voteAverage;
-  final String overview;
-  final String posterPath;
-  final String backdropPath;
+  int? id;
+  String? title;
+  double? voteAverage;
+  String? overview;
+  String? posterPath;
+  String? backdropPath;
 
   MovieModel({
-    required this.id,
-    required this.title,
-    required this.voteAverage,
-    required this.overview,
-    required this.posterPath,
-    required this.backdropPath,
+    this.id = 0,
+    this.title = "",
+    this.voteAverage = 0.0,
+    this.overview = "",
+    this.posterPath = "",
+    this.backdropPath = "",
   });
+
+  factory MovieModel.fromJson(Map<String, dynamic> json) {
+    return MovieModel(
+      id: json['id'],
+      title: json['title'],
+      voteAverage: (json['vote_average'] as num).toDouble(),
+      overview: json['overview'],
+      posterPath: json['poster_path'],
+      backdropPath: json['backdrop_path'],
+    );
+  }
 
   List<Object?> get props => [
         id,
