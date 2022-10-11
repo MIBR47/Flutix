@@ -61,6 +61,7 @@ class _MainPageState extends State<MainPage> {
   }
 
   Widget pageView() => PageView(
+        physics: NeverScrollableScrollPhysics(),
         controller: pageController,
         onPageChanged: ((index) {
           bottomNavBarIndex = index;
