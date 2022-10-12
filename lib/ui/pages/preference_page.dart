@@ -30,15 +30,16 @@ class _PreferencesPageState extends State<PreferencesPage> {
         context
             .read<PageBloc>()
             .add(GoToRegistrationPageEvent(widget.registrationData));
-        if (Navigator.of(context).userGestureInProgress)
+        if (Navigator.of(context).userGestureInProgress) {
           return Future<bool>.value(true);
-        else
+        } else {
           return Future<bool>.value(false);
+        }
       },
       child: Scaffold(
         body: Container(
           color: Colors.white,
-          padding: EdgeInsets.symmetric(horizontal: defaulMargin),
+          padding: const EdgeInsets.symmetric(horizontal: defaultMargin),
           child: ListView(
             children: [
               Column(
@@ -132,7 +133,7 @@ class _PreferencesPageState extends State<PreferencesPage> {
 
   List<Widget> generateGenreWidgets(BuildContext context) {
     double width =
-        (MediaQuery.of(context).size.width - 2 * defaulMargin - 24) / 2;
+        (MediaQuery.of(context).size.width - 2 * defaultMargin - 24) / 2;
     return widget.genres
         .map(
           (e) => SelectableBox(
@@ -149,7 +150,7 @@ class _PreferencesPageState extends State<PreferencesPage> {
 
   List<Widget> generateLangWidgets(BuildContext context) {
     double width =
-        (MediaQuery.of(context).size.width - 2 * defaulMargin - 24) / 2;
+        (MediaQuery.of(context).size.width - 2 * defaultMargin - 24) / 2;
     return widget.languages
         .map(
           (e) => SelectableBox(

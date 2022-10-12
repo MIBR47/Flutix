@@ -12,7 +12,7 @@ class BrowseButton extends StatelessWidget {
         Container(
           width: 50,
           height: 50,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(8)),
             color: Color(0xffEBEFF6),
           ),

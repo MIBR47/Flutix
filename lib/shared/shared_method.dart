@@ -1,6 +1,7 @@
 part of 'shared.dart';
 
 Future<XFile?> getImage() async {
+  // ignore: no_leading_underscores_for_local_identifiers
   final ImagePicker _picker = ImagePicker();
   final XFile? pickedFile;
   pickedFile = await _picker.pickImage(source: ImageSource.gallery);

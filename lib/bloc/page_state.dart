@@ -16,21 +16,21 @@ class OnLoginPageState extends PageState {
 
 class OnRegistrationPageState extends PageState {
   final RegistationDataModel registrationData;
-  OnRegistrationPageState(this.registrationData);
+  const OnRegistrationPageState(this.registrationData);
   @override
   List<Object> get props => [];
 }
 
 class OnPreferencesPageState extends PageState {
   final RegistationDataModel registrationData;
-  OnPreferencesPageState(this.registrationData);
+  const OnPreferencesPageState(this.registrationData);
   @override
   List<Object> get props => [];
 }
 
 class OnAccountInformationPageState extends PageState {
   final RegistationDataModel registrationData;
-  OnAccountInformationPageState(this.registrationData);
+  const OnAccountInformationPageState(this.registrationData);
   @override
   List<Object> get props => [];
 }
@@ -43,4 +43,11 @@ class OnSplashPageState extends PageState {
 class OnMainPageState extends PageState {
   @override
   List<Object> get props => [];
+}
+
+class OnMovieDetailPageState extends PageState {
+  final MovieModel movie;
+  const OnMovieDetailPageState(this.movie);
+  @override
+  List<Object> get props => [movie];
 }

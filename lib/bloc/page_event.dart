@@ -16,21 +16,21 @@ class GoToLoginPageEvent extends PageEvent {
 
 class GoToRegistrationPageEvent extends PageEvent {
   final RegistationDataModel registrationData;
-  GoToRegistrationPageEvent(this.registrationData);
+  const GoToRegistrationPageEvent(this.registrationData);
   @override
   List<Object> get props => [];
 }
 
 class GoToPreferencesPageEvent extends PageEvent {
   final RegistationDataModel registrationData;
-  GoToPreferencesPageEvent(this.registrationData);
+  const GoToPreferencesPageEvent(this.registrationData);
   @override
   List<Object> get props => [];
 }
 
 class GoToAccountInformationPageEvent extends PageEvent {
   final RegistationDataModel registrationData;
-  GoToAccountInformationPageEvent(this.registrationData);
+  const GoToAccountInformationPageEvent(this.registrationData);
   @override
   List<Object> get props => [];
 }
@@ -38,4 +38,11 @@ class GoToAccountInformationPageEvent extends PageEvent {
 class GoToMainPageEvent extends PageEvent {
   @override
   List<Object> get props => [];
+}
+
+class GotoMovieDetailPageEvent extends PageEvent {
+  final MovieModel movie;
+  const GotoMovieDetailPageEvent(this.movie);
+  @override
+  List<Object> get props => [movie];
 }

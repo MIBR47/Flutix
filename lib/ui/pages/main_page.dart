@@ -12,7 +12,6 @@ class _MainPageState extends State<MainPage> {
   PageController? pageController;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     bottomNavBarIndex = 0;
     pageController = PageController(initialPage: bottomNavBarIndex!);
@@ -28,7 +27,7 @@ class _MainPageState extends State<MainPage> {
           ),
           SafeArea(
             child: Container(
-              color: Color(0xffF6F7F9),
+              color: const Color(0xffF6F7F9),
             ),
           ),
           pageView(),
@@ -38,7 +37,7 @@ class _MainPageState extends State<MainPage> {
             child: Container(
               height: 45,
               width: 46,
-              margin: EdgeInsets.only(bottom: 42),
+              margin: const EdgeInsets.only(bottom: 42),
               child: FloatingActionButton(
                 elevation: 1,
                 backgroundColor: accentColor2,
@@ -61,12 +60,12 @@ class _MainPageState extends State<MainPage> {
   }
 
   Widget pageView() => PageView(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         controller: pageController,
         onPageChanged: ((index) {
           bottomNavBarIndex = index;
         }),
-        children: [
+        children: const [
           Center(
             child: MoviePage(),
           ),
@@ -93,7 +92,7 @@ class _MainPageState extends State<MainPage> {
               elevation: 0,
               backgroundColor: Colors.transparent,
               selectedItemColor: mainColor,
-              unselectedItemColor: Color(0xffE5E5E5),
+              unselectedItemColor: const Color(0xffE5E5E5),
               currentIndex: bottomNavBarIndex!,
               selectedLabelStyle: GoogleFonts.raleway(
                   fontSize: 13, fontWeight: FontWeight.w600),
@@ -109,7 +108,7 @@ class _MainPageState extends State<MainPage> {
                 BottomNavigationBarItem(
                   label: "New Movies",
                   icon: Container(
-                    margin: EdgeInsets.only(bottom: 6),
+                    margin: const EdgeInsets.only(bottom: 6),
                     height: 20,
                     child: Image.asset((bottomNavBarIndex == 0)
                         ? "assets/ic_movie.png"
@@ -119,7 +118,7 @@ class _MainPageState extends State<MainPage> {
                 BottomNavigationBarItem(
                   label: "My Tickets",
                   icon: Container(
-                    margin: EdgeInsets.only(bottom: 6),
+                    margin: const EdgeInsets.only(bottom: 6),
                     height: 20,
                     child: Image.asset((bottomNavBarIndex == 1)
                         ? "assets/ic_tickets.png"

@@ -1,3 +1,5 @@
+// ignore_for_file: null_check_always_fails
+
 part of 'pages.dart';
 
 class SignInPage extends StatefulWidget {
@@ -28,24 +30,25 @@ class _SignInPageState extends State<SignInPage> {
     return WillPopScope(
       onWillPop: () async {
         context.read<PageBloc>().add(GoToSplashPageEvent());
-        if (Navigator.of(context).userGestureInProgress)
+        if (Navigator.of(context).userGestureInProgress) {
           return null!;
-        else
+        } else {
           return null!;
+        }
         // return null!;
       },
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Center(
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: defaulMargin),
+            padding: const EdgeInsets.symmetric(horizontal: defaultMargin),
             child: ListView(
               children: [
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     Container(
@@ -129,7 +132,7 @@ class _SignInPageState extends State<SignInPage> {
                     Container(
                       width: MediaQuery.of(context).size.width * 0.5,
                       height: 50,
-                      margin: EdgeInsets.only(top: 40, bottom: 30),
+                      margin: const EdgeInsets.only(top: 40, bottom: 30),
                       child: FloatingActionButton(
                         onPressed: isEmailValid && isPasswordValid
                             ? () async {
@@ -146,9 +149,9 @@ class _SignInPageState extends State<SignInPage> {
                                   });
                                   // ignore: avoid_single_cascade_in_expression_statements
                                   Flushbar(
-                                    duration: Duration(seconds: 4),
+                                    duration: const Duration(seconds: 4),
                                     flushbarPosition: FlushbarPosition.TOP,
-                                    backgroundColor: Color(0xFFff5c83),
+                                    backgroundColor: const Color(0xFFff5c83),
                                     message: result.message!.message!.trim(),
                                     // ignore: use_build_context_synchronously
                                   )..show(context);
@@ -157,9 +160,9 @@ class _SignInPageState extends State<SignInPage> {
                             : null,
                         backgroundColor: isEmailValid && isPasswordValid
                             ? mainColor
-                            : Color.fromARGB(255, 175, 174, 174),
+                            : const Color.fromARGB(255, 175, 174, 174),
                         child: isSignIn
-                            ? SpinKitRing(
+                            ? const SpinKitRing(
                                 color: Colors.white,
                                 size: 40,
                               )
@@ -167,7 +170,7 @@ class _SignInPageState extends State<SignInPage> {
                                 Icons.arrow_forward,
                                 color: isEmailValid && isPasswordValid
                                     ? Colors.white
-                                    : Color.fromARGB(255, 117, 115, 115),
+                                    : const Color.fromARGB(255, 117, 115, 115),
                               ),
                       ),
                     ),

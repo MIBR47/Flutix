@@ -33,6 +33,7 @@ dependencies:
   cloud_firestore: ^3.4.6
   cupertino_icons: ^1.0.2
   cupertino_will_pop_scope: ^1.2.1
+  draggable_home: ^1.0.3
   email_validator: ^2.1.17
   equatable: ^2.0.5
   firebase_auth: ^3.6.2

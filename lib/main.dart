@@ -1,6 +1,5 @@
-import 'package:bwa_flutix/bloc/user_bloc.dart';
 import 'package:bwa_flutix/services/services.dart';
-import 'package:bwa_flutix/shared/shared.dart';
+
 import 'package:bwa_flutix/ui/pages/pages.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -65,7 +64,7 @@ class MyApp extends StatelessWidget {
               //   // ),
               // ),
               debugShowCheckedModeBanner: false,
-              home: Wrapper(),
+              home: const Wrapper(),
             );
           },
         ),

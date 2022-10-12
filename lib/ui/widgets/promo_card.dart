@@ -10,7 +10,7 @@ class PromoCard extends StatelessWidget {
       children: [
         Container(
           height: 80,
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
             color: mainColor,
             borderRadius: BorderRadius.circular(15),
@@ -59,7 +59,7 @@ class PromoCard extends StatelessWidget {
                 Colors.black.withOpacity(0.1),
                 Colors.transparent,
               ],
-            ).createShader(Rect.fromLTRB(0, 0, 77.5, 80));
+            ).createShader(const Rect.fromLTRB(0, 0, 77.5, 80));
           },
           blendMode: BlendMode.dstIn,
           child: SizedBox(
@@ -84,7 +84,7 @@ class PromoCard extends StatelessWidget {
                   Colors.black.withOpacity(0.1),
                   Colors.transparent,
                 ],
-              ).createShader(Rect.fromLTRB(0, 0, 96, 45));
+              ).createShader(const Rect.fromLTRB(0, 0, 96, 45));
             },
             blendMode: BlendMode.dstIn,
             child: SizedBox(
@@ -105,7 +105,7 @@ class PromoCard extends StatelessWidget {
                   Colors.black.withOpacity(0.1),
                   Colors.transparent,
                 ],
-              ).createShader(Rect.fromLTRB(0, 0, 53, 25));
+              ).createShader(const Rect.fromLTRB(0, 0, 53, 25));
             },
             blendMode: BlendMode.dstIn,
             child: SizedBox(

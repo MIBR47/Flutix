@@ -19,15 +19,16 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
         context
             .read<PageBloc>()
             .add(GoToPreferencesPageEvent(widget.registrationData));
-        if (Navigator.of(context).userGestureInProgress)
+        if (Navigator.of(context).userGestureInProgress) {
           return Future<bool>.value(true);
-        else
+        } else {
           return Future<bool>.value(false);
+        }
       },
       child: Scaffold(
         body: Container(
           color: Colors.white,
-          padding: EdgeInsets.symmetric(horizontal: defaulMargin),
+          padding: const EdgeInsets.symmetric(horizontal: defaultMargin),
           child: ListView(
             children: [
               Container(
@@ -60,7 +61,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
               Container(
                 height: 150,
                 width: 150,
-                margin: EdgeInsets.only(bottom: 20),
+                margin: const EdgeInsets.only(bottom: 20),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
@@ -94,7 +95,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                     height: 45,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xff3E9D9D),
+                            backgroundColor: const Color(0xff3E9D9D),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8))),
                         child: (isSignUp == true)
@@ -102,7 +103,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                                 color: Colors.white,
                                 size: 40,
                               )
-                            : Text("Create New Account"),
+                            : const Text("Create New Account"),
                         onPressed: () async {
                           setState(() {
                             isSignUp = true;

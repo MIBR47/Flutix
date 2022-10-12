@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:bwa_flutix/models/models.dart';
 import 'package:equatable/equatable.dart';
@@ -34,6 +35,9 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     );
     on<GoToMainPageEvent>(
       (event, emit) => emit(OnMainPageState()),
+    );
+    on<GotoMovieDetailPageEvent>(
+      (event, emit) => emit(OnMovieDetailPageState(event.movie)),
     );
   }
 }

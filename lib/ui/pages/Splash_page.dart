@@ -10,19 +10,19 @@ class SplashPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: defaulMargin),
+        padding: const EdgeInsets.symmetric(horizontal: defaultMargin),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
               height: 136,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(image: AssetImage("assets/logo.png")),
               ),
             ),
             Container(
-              margin: EdgeInsets.only(
+              margin: const EdgeInsets.only(
                 top: 70,
                 bottom: 16,
               ),
@@ -40,7 +40,7 @@ class SplashPage extends StatelessWidget {
             Container(
               width: 250,
               height: 46,
-              margin: EdgeInsets.only(
+              margin: const EdgeInsets.only(
                 top: 70,
                 bottom: 19,
               ),

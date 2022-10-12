@@ -9,9 +9,10 @@ class MoviePage extends StatelessWidget {
     return ListView(
       children: [
         profile(uploadImageLoading, context),
-        // note: Now
+        // note: Now Playing
         Container(
-          margin: EdgeInsets.fromLTRB(defaulMargin, 30, defaulMargin, 12),
+          margin:
+              const EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
           child: Text(
             "Now Playing",
             style: blackTextFont.copyWith(
@@ -33,10 +34,15 @@ class MoviePage extends StatelessWidget {
                   itemBuilder: (_, index) {
                     return Container(
                       margin: EdgeInsets.only(
-                          left: (index == 0) ? defaulMargin : 0,
-                          right: (index == movies.length) ? defaulMargin : 16),
+                          left: (index == 0) ? defaultMargin : 0,
+                          right: (index == movies.length) ? defaultMargin : 16),
                       child: MovieCard(
                         movie: movies[index],
+                        ontap: () {
+                          context
+                              .read<PageBloc>()
+                              .add(GotoMovieDetailPageEvent(movies[index]));
+                        },
                       ),
                     );
                   },
@@ -53,7 +59,8 @@ class MoviePage extends StatelessWidget {
         ),
         // note: Browse movie
         Container(
-          margin: EdgeInsets.fromLTRB(defaulMargin, 30, defaulMargin, 12),
+          margin:
+              const EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
           child: Text(
             "Browse Movie",
             style: blackTextFont.copyWith(
@@ -66,7 +73,7 @@ class MoviePage extends StatelessWidget {
           builder: (_, userState) {
             if (userState is UserLoadedState) {
               return Container(
-                margin: EdgeInsets.symmetric(horizontal: defaulMargin),
+                margin: const EdgeInsets.symmetric(horizontal: defaultMargin),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: List.generate(
@@ -85,7 +92,8 @@ class MoviePage extends StatelessWidget {
         ),
         // note: coming soon
         Container(
-          margin: EdgeInsets.fromLTRB(defaulMargin, 30, defaulMargin, 12),
+          margin:
+              const EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
           child: Text(
             "Coming Soon",
             style: blackTextFont.copyWith(
@@ -107,8 +115,8 @@ class MoviePage extends StatelessWidget {
                   itemBuilder: (_, index) {
                     return Container(
                       margin: EdgeInsets.only(
-                          left: (index == 0) ? defaulMargin : 0,
-                          right: (index == movies.length) ? defaulMargin : 16),
+                          left: (index == 0) ? defaultMargin : 0,
+                          right: (index == movies.length) ? defaultMargin : 16),
                       child: ComingSoonCard(
                         movie: movies[index],
                       ),
@@ -127,7 +135,8 @@ class MoviePage extends StatelessWidget {
         ),
         // Note : Promo
         Container(
-          margin: EdgeInsets.fromLTRB(defaulMargin, 30, defaulMargin, 12),
+          margin:
+              const EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
           child: Text(
             "Get Luck Day",
             style: blackTextFont.copyWith(
@@ -139,12 +148,12 @@ class MoviePage extends StatelessWidget {
         Column(
           children: dumyPromos
               .map((e) => Padding(
-                  padding:
-                      EdgeInsets.fromLTRB(defaulMargin, 0, defaulMargin, 16),
+                  padding: const EdgeInsets.fromLTRB(
+                      defaultMargin, 0, defaultMargin, 16),
                   child: PromoCard(e)))
               .toList(),
         ),
-        SizedBox(
+        const SizedBox(
           height: 100,
         ),
       ],
@@ -160,7 +169,7 @@ class MoviePage extends StatelessWidget {
           bottomRight: Radius.circular(20),
         ),
       ),
-      padding: EdgeInsets.fromLTRB(defaulMargin, 20, defaulMargin, 30),
+      padding: const EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 30),
       child: BlocBuilder<UserBloc, UserState>(
         builder: (_, userState) {
           if (userState is UserLoadedState) {
@@ -179,12 +188,12 @@ class MoviePage extends StatelessWidget {
             return Row(
               children: [
                 Container(
-                  padding: EdgeInsets.all(5),
+                  padding: const EdgeInsets.all(5),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
                       width: 1,
-                      color: Color(0xff5F558B),
+                      color: const Color(0xff5F558B),
                     ),
                   ),
                   child: Stack(
@@ -203,7 +212,7 @@ class MoviePage extends StatelessWidget {
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             image: (userState.user.profilePicture == "")
-                                ? AssetImage("assets/user_pic.png")
+                                ? const AssetImage("assets/user_pic.png")
                                 : NetworkImage(userState.user.profilePicture!)
                                     as ImageProvider,
                           ),
@@ -212,7 +221,7 @@ class MoviePage extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 16,
                 ),
                 Column(
@@ -220,7 +229,7 @@ class MoviePage extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width -
-                          2 * defaulMargin -
+                          2 * defaultMargin -
                           78,
                       child: Text(
                         userState.user.name!,

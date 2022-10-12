@@ -1,9 +1,10 @@
+// ignore: file_names
 part of 'pages.dart';
 
 class SignUpPage extends StatefulWidget {
   final RegistationDataModel registrationData;
 
-  SignUpPage(this.registrationData, {super.key});
+  const SignUpPage(this.registrationData, {super.key});
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -37,15 +38,16 @@ class _SignUpPageState extends State<SignUpPage> {
     return WillPopScope(
       onWillPop: () async {
         context.read<PageBloc>().add(GoToSplashPageEvent());
-        if (Navigator.of(context).userGestureInProgress)
+        if (Navigator.of(context).userGestureInProgress) {
           return Future<bool>.value(true);
-        else
+        } else {
           return Future<bool>.value(false);
+        }
       },
       child: Scaffold(
           body: Container(
         color: Colors.white,
-        padding: const EdgeInsets.symmetric(horizontal: defaulMargin),
+        padding: const EdgeInsets.symmetric(horizontal: defaultMargin),
         child: ListView(children: [
           Column(
             children: [
@@ -92,7 +94,7 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget profileImage() => Container(
+  Widget profileImage() => SizedBox(
         width: 90,
         height: 104,
         child: Stack(

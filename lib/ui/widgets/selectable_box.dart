@@ -32,16 +32,16 @@ class SelectableBox extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
           color: (!isEnabled)
-              ? Color(0xffE4E4E4)
+              ? const Color(0xffE4E4E4)
               : isselected
                   ? accentColor2
                   : Colors.transparent,
           border: Border.all(
             color: (!isEnabled)
-                ? Color(0xffE4E4E4)
+                ? const Color(0xffE4E4E4)
                 : isselected
                     ? Colors.transparent
-                    : Color(0xffE4E4E4),
+                    : const Color(0xffE4E4E4),
           ),
         ),
         child: Center(

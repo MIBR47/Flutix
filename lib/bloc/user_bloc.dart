@@ -1,8 +1,8 @@
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:bwa_flutix/models/models.dart';
 import 'package:bwa_flutix/services/services.dart';
 import 'package:equatable/equatable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 part 'user_event.dart';
 part 'user_state.dart';

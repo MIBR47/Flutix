@@ -4,7 +4,7 @@ class PromoModel extends Equatable {
   final String title;
   final String subtitle;
   final int discount;
-  PromoModel(
+  const PromoModel(
       {required this.title, required this.subtitle, required this.discount});
 
   @override
@@ -12,11 +12,11 @@ class PromoModel extends Equatable {
 }
 
 List<PromoModel> dumyPromos = [
-  PromoModel(
+  const PromoModel(
       title: "Student", subtitle: "Maximal only for two people", discount: 50),
-  PromoModel(
+  const PromoModel(
       title: "Family", subtitle: "Maximal only for three people", discount: 50),
-  PromoModel(
+  const PromoModel(
       title: "Subscription Promo",
       subtitle: "Maximal only for two people",
       discount: 50),
