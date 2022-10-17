@@ -51,3 +51,10 @@ class OnMovieDetailPageState extends PageState {
   @override
   List<Object> get props => [movie];
 }
+
+class OnSelectSchedulePageState extends PageState {
+  final MovieDetailModel movieDetail;
+  const OnSelectSchedulePageState(this.movieDetail);
+  @override
+  List<Object> get props => [movieDetail];
+}

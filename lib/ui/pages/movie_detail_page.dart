@@ -175,7 +175,7 @@ class MovieDetailPage extends StatelessWidget {
                             margin: EdgeInsets.fromLTRB(
                                 defaultMargin, 0, defaultMargin, 30),
                             child: Text(
-                              movie.overview!,
+                              movieDetail.overview!,
                               textAlign: TextAlign.justify,
                               style: greyTextFont.copyWith(
                                 fontWeight: FontWeight.w400,
@@ -194,8 +194,9 @@ class MovieDetailPage extends StatelessWidget {
                                           borderRadius:
                                               BorderRadius.circular(8))),
                                   onPressed: () {
-                                    //  context.read<PageBloc>().add(
-                                    //     GoToSelectSchedulePage(movieDetail));
+                                    context.read<PageBloc>().add(
+                                        GoToSelectSchedulePageEvent(
+                                            movieDetail));
                                   },
                                   child: Text(
                                     "Continue to Book",

@@ -11,6 +11,7 @@ class MovieDetailModel extends MovieModel {
           voteAverage: movie.voteAverage,
           posterPath: movie.posterPath,
           backdropPath: movie.backdropPath,
+          overview: movie.overview,
         );
 
   String get genresAndLanguage {

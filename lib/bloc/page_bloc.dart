@@ -39,5 +39,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     on<GotoMovieDetailPageEvent>(
       (event, emit) => emit(OnMovieDetailPageState(event.movie)),
     );
+    on<GoToSelectSchedulePageEvent>(
+      (event, emit) => emit(OnSelectSchedulePageState(event.movieDetail)),
+    );
   }
 }
