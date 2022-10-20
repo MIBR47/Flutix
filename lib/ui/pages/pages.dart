@@ -15,6 +15,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:random_string/random_string.dart';
 
 import '../../bloc/bloc.dart';
 
@@ -28,3 +29,4 @@ part 'signUp_page.dart';
 part 'preference_page.dart';
 part 'movie_detail_page.dart';
 part 'select_schedule_page.dart';
+part 'select_seat_page.dart';

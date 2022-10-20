@@ -44,8 +44,10 @@ class DateCard extends StatelessWidget {
             ),
             Text(
               date.day.toString(),
-              style: blackTextFont.copyWith(
-                  fontSize: 16, fontWeight: FontWeight.w400),
+              style: whiteNumberFont.copyWith(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400),
             ),
           ],
         ),
