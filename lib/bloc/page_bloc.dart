@@ -30,8 +30,7 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       (event, emit) => emit(OnPreferencesPageState(event.registrationData)),
     );
     on<GoToAccountInformationPageEvent>(
-      (event, emit) =>
-          emit(OnAccountInformationPageState(event.registrationData)),
+      (event, emit) => emit(OnAccountInformationPageState(event.registrationData)),
     );
     on<GoToMainPageEvent>(
       (event, emit) => emit(OnMainPageState()),
@@ -44,6 +43,17 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     );
     on<GoToSelectSeatPageEvent>(
       (event, emit) => emit(OnSelectSeatPageState(event.ticket)),
+    );
+    on<GoToCheckoutPageEvent>(
+      (event, emit) => emit(OnCheckOutPageState(event.ticket)),
+    );
+
+    on<GoToSuccessPageEvent>(
+      (event, emit) => emit(OnSuccessPageState(event.ticket, event.transaction)),
+    );
+
+    on<GoToSuccessTopupPageEvent>(
+      (event, emit) => emit(OnSuccessTopupPageState(event.transaction)),
     );
   }
 }

@@ -36,6 +36,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                 height: 56,
                 child: Stack(
                   children: [
+                    // * note : Back Button
                     Align(
                       alignment: Alignment.centerLeft,
                       child: GestureDetector(
@@ -48,6 +49,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                         ),
                       ),
                     ),
+                    // * note : Page Title
                     Center(
                       child: Text(
                         "Confirm New\nAccount",
@@ -58,6 +60,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                   ],
                 ),
               ),
+              // * note : Foto Profile
               Container(
                 height: 150,
                 width: 150,
@@ -79,6 +82,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                     fontSize: 20, fontWeight: FontWeight.w300),
                 textAlign: TextAlign.center,
               ),
+              // * note : Account Name
               Text(
                 widget.registrationData.name,
                 style: blackTextFont.copyWith(
@@ -88,6 +92,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
               const SizedBox(
                 height: 120,
               ),
+              // * note : Button create Account
               Column(
                 children: [
                   SizedBox(

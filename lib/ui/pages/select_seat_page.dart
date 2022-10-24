@@ -69,16 +69,19 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                               children: [
                                 Container(
                                   margin: const EdgeInsets.only(
-                                    right: 16,
-                                  ),
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.5,
+                                      right: 16, left: 16),
+                                  width: MediaQuery.of(context).size.width -
+                                      defaultMargin * 2 -
+                                      60 -
+                                      16 * 2 -
+                                      24 -
+                                      2,
                                   child: Text(
                                     widget.ticket.movieDetail!.title!,
                                     style: blackTextFont.copyWith(fontSize: 20),
                                     maxLines: 2,
                                     overflow: TextOverflow.clip,
-                                    textAlign: TextAlign.end,
+                                    textAlign: TextAlign.start,
                                   ),
                                 ),
                                 Container(
@@ -89,6 +92,7 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                                     image: DecorationImage(
                                       image: NetworkImage(
                                           '${imageBaseURL}w154${widget.ticket.movieDetail!.posterPath!}'),
+                                      fit: BoxFit.fitWidth,
                                     ),
                                   ),
                                 ),
@@ -195,7 +199,14 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                                 ? Colors.white
                                 : const Color.fromARGB(255, 116, 114, 114),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            selectedSeats.isNotEmpty
+                                ? context.read<PageBloc>().add(
+                                      GoToCheckoutPageEvent(widget.ticket
+                                          .copyWith(seats: selectedSeats)),
+                                    )
+                                : null;
+                          },
                         ),
                       ),
                       const SizedBox(

@@ -8,14 +8,7 @@ class TicketModel extends Equatable {
   final List<String>? seats;
   final String? name;
   final int totalPrice;
-  const TicketModel(
-      {this.movieDetail,
-      this.theater,
-      this.time,
-      this.bookingCode = "xxxx",
-      this.seats,
-      this.name = '',
-      this.totalPrice = 0});
+  const TicketModel({this.movieDetail, this.theater, this.time, this.bookingCode = "xxxx", this.seats, this.name = '', this.totalPrice = 0});
 
   TicketModel copyWith({
     MovieDetailModel? movieDetail,
@@ -32,7 +25,7 @@ class TicketModel extends Equatable {
         time: time ?? this.time,
         bookingCode: bookingCode ?? this.bookingCode,
         seats: seats ?? this.seats,
-        name: name,
+        name: name ?? this.name,
         totalPrice: totalPrice ?? this.totalPrice,
       );
 
@@ -46,6 +39,5 @@ class TicketModel extends Equatable {
   }
 
   @override
-  List<Object?> get props =>
-      [movieDetail, theater, time, bookingCode, seats, name, totalPrice];
+  List<Object?> get props => [movieDetail, theater, time, bookingCode, seats, name, totalPrice];
 }

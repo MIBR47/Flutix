@@ -9,7 +9,7 @@ class MoviePage extends StatelessWidget {
     return ListView(
       children: [
         profile(uploadImageLoading, context),
-        // note: Now Playing
+        // * note: Now Playing
         Container(
           margin:
               const EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
@@ -57,7 +57,7 @@ class MoviePage extends StatelessWidget {
             },
           ),
         ),
-        // note: Browse movie
+        // * note: Browse movie
         Container(
           margin:
               const EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
@@ -90,7 +90,7 @@ class MoviePage extends StatelessWidget {
             }
           },
         ),
-        // note: coming soon
+        // * note: coming soon
         Container(
           margin:
               const EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
@@ -133,7 +133,7 @@ class MoviePage extends StatelessWidget {
             },
           ),
         ),
-        // Note : Promo
+        // * Note : Promo
         Container(
           margin:
               const EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),

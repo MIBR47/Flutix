@@ -38,12 +38,12 @@ class MovieDetailPage extends StatelessWidget {
                         children: [
                           Stack(
                             children: [
+                              // * note : Poster Movie
                               Container(
                                 height: 270,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
-                                    image: NetworkImage(
-                                        "${imageBaseURL}w780${movie.backdropPath!}"),
+                                    image: NetworkImage("${imageBaseURL}w780${movie.backdropPath!}"),
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -52,26 +52,17 @@ class MovieDetailPage extends StatelessWidget {
                                 height: 271,
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
-                                      begin: const Alignment(0, 1),
-                                      end: const Alignment(0, 0.06),
-                                      colors: [
-                                        Colors.white,
-                                        Colors.white.withOpacity(0)
-                                      ]),
+                                      begin: const Alignment(0, 1), end: const Alignment(0, 0.06), colors: [Colors.white, Colors.white.withOpacity(0)]),
                                 ),
                               ),
+                              // * note : Back Button
                               Container(
-                                margin: const EdgeInsets.only(
-                                    top: 20, left: defaultMargin),
+                                margin: const EdgeInsets.only(top: 20, left: defaultMargin),
                                 padding: const EdgeInsets.all(1),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: Colors.black.withOpacity(0.04)),
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: Colors.black.withOpacity(0.04)),
                                 child: GestureDetector(
                                   onTap: () {
-                                    context
-                                        .read<PageBloc>()
-                                        .add(GoToMainPageEvent());
+                                    context.read<PageBloc>().add(GoToMainPageEvent());
                                   },
                                   child: const Icon(
                                     Icons.arrow_back,
@@ -81,9 +72,9 @@ class MovieDetailPage extends StatelessWidget {
                               )
                             ],
                           ),
+                          // * note : Movie Title
                           Container(
-                            margin: const EdgeInsets.fromLTRB(
-                                defaultMargin, 16, defaultMargin, 6),
+                            margin: const EdgeInsets.fromLTRB(defaultMargin, 16, defaultMargin, 6),
                             child: Text(
                               movie.title!,
                               textAlign: TextAlign.center,
@@ -96,9 +87,7 @@ class MovieDetailPage extends StatelessWidget {
                           (snapshot.hasData)
                               ? Text(
                                   movieDetail.genresAndLanguage,
-                                  style: greyTextFont.copyWith(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400),
+                                  style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
                                 )
                               : SizedBox(
                                   height: 50,
@@ -118,12 +107,11 @@ class MovieDetailPage extends StatelessWidget {
                           const SizedBox(
                             height: 24,
                           ),
-                          // note: CREDITS
+                          // *note: CREDITS
                           Align(
                             alignment: Alignment.topLeft,
                             child: Container(
-                                margin: const EdgeInsets.only(
-                                    left: defaultMargin, bottom: 12),
+                                margin: const EdgeInsets.only(left: defaultMargin, bottom: 12),
                                 child: Text(
                                   "Cast & Crew",
                                   style: blackTextFont.copyWith(fontSize: 14),
@@ -141,27 +129,22 @@ class MovieDetailPage extends StatelessWidget {
                                       itemCount: credits.length,
                                       itemBuilder: (_, index) => Container(
                                           margin: EdgeInsets.only(
-                                              left: (index == 0)
-                                                  ? defaultMargin
-                                                  : 0,
-                                              right:
-                                                  (index == credits.length - 1)
-                                                      ? defaultMargin
-                                                      : 16),
+                                              left: (index == 0) ? defaultMargin : 0, right: (index == credits.length - 1) ? defaultMargin : 16),
                                           child: CreditCard(credits[index]))),
                                 );
                               } else {
                                 return SizedBox(
-                                    height: 50,
-                                    child: SpinKitFadingCircle(
-                                      color: accentColor1,
-                                    ));
+                                  height: 50,
+                                  child: SpinKitFadingCircle(
+                                    color: accentColor1,
+                                  ),
+                                );
                               }
                             },
                           ),
+                          // * note : StoryLine movie
                           Container(
-                            margin: const EdgeInsets.fromLTRB(
-                                defaultMargin, 24, defaultMargin, 8),
+                            margin: const EdgeInsets.fromLTRB(defaultMargin, 24, defaultMargin, 8),
                             child: Align(
                               alignment: Alignment.topLeft,
                               child: Text(
@@ -172,8 +155,7 @@ class MovieDetailPage extends StatelessWidget {
                           ),
 
                           Container(
-                            margin: EdgeInsets.fromLTRB(
-                                defaultMargin, 0, defaultMargin, 30),
+                            margin: const EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 30),
                             child: Text(
                               movieDetail.overview!,
                               textAlign: TextAlign.justify,
@@ -182,6 +164,7 @@ class MovieDetailPage extends StatelessWidget {
                               ),
                             ),
                           ),
+                          // * note : Button to Continue
                           Column(
                             children: [
                               SizedBox(
@@ -189,14 +172,9 @@ class MovieDetailPage extends StatelessWidget {
                                 height: 45,
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                      backgroundColor: mainColor,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8))),
+                                      backgroundColor: mainColor, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
                                   onPressed: () {
-                                    context.read<PageBloc>().add(
-                                        GoToSelectSchedulePageEvent(
-                                            movieDetail));
+                                    context.read<PageBloc>().add(GoToSelectSchedulePageEvent(movieDetail));
                                   },
                                   child: Text(
                                     "Continue to Book",
@@ -204,7 +182,7 @@ class MovieDetailPage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: defaultMargin)
+                              const SizedBox(height: defaultMargin)
                             ],
                           ),
                         ],

@@ -7,7 +7,7 @@ abstract class MovieEvent extends Equatable {
   // List<Object> get props => [];
 }
 
-class FetchMoviesEvent extends MovieEvent {
+class MoviesLoadedEvent extends MovieEvent {
   @override
   List<Object> get props => [];
 }

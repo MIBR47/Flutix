@@ -25,3 +25,12 @@ Future<String> uploadImage(File image) async {
   // print(imageUrl);
   return imageUrl;
 }
+
+String convertToIdr(dynamic number, int decimalDigit) {
+  NumberFormat currencyFormatter = NumberFormat.currency(
+    locale: 'id',
+    symbol: 'IDR ',
+    decimalDigits: decimalDigit,
+  );
+  return currencyFormatter.format(number);
+}

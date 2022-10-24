@@ -45,6 +45,7 @@ class _PreferencesPageState extends State<PreferencesPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // * note : Back Button
                   Container(
                     margin: const EdgeInsets.only(top: 20, bottom: 22),
                     height: 56,
@@ -67,6 +68,7 @@ class _PreferencesPageState extends State<PreferencesPage> {
                       ],
                     ),
                   ),
+                  // * note : Select Genres
                   Text("Select Your Four\nFavorite Genres",
                       style: blackTextFont.copyWith(fontSize: 20)),
                   const SizedBox(
@@ -80,6 +82,7 @@ class _PreferencesPageState extends State<PreferencesPage> {
                   const SizedBox(
                     height: 24,
                   ),
+                  // * note : Select Language
                   Text("Movie Language\nYou Prefer?",
                       style: blackTextFont.copyWith(fontSize: 20)),
                   const SizedBox(
@@ -93,6 +96,7 @@ class _PreferencesPageState extends State<PreferencesPage> {
                   const SizedBox(
                     height: 30,
                   ),
+                  // * note : Next Page Button
                   Center(
                     child: FloatingActionButton(
                       backgroundColor: mainColor,

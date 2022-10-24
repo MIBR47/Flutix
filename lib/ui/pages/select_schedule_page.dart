@@ -18,8 +18,7 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
   @override
   void initState() {
     super.initState();
-    dates =
-        List.generate(7, (index) => DateTime.now().add(Duration(days: index)));
+    dates = List.generate(7, (index) => DateTime.now().add(Duration(days: index)));
     selectedDate = dates![0];
   }
 
@@ -27,9 +26,7 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        context
-            .read<PageBloc>()
-            .add(GotoMovieDetailPageEvent(widget.movieDetail));
+        context.read<PageBloc>().add(GotoMovieDetailPageEvent(widget.movieDetail));
         if (Navigator.of(context).userGestureInProgress) {
           return Future<bool>.value(true);
         } else {
@@ -52,16 +49,14 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                 Row(
                   children: [
                     Container(
-                      margin:
-                          const EdgeInsets.only(top: 20, left: defaultMargin),
+                      margin: const EdgeInsets.only(top: 20, left: defaultMargin),
                       padding: const EdgeInsets.all(1),
                       // decoration: BoxDecoration(
                       //     borderRadius: BorderRadius.circular(5),
                       //     color: Colors.black.withOpacity(0.04)),
                       child: GestureDetector(
                         onTap: () {
-                          context.read<PageBloc>().add(
-                              GotoMovieDetailPageEvent(widget.movieDetail));
+                          context.read<PageBloc>().add(GotoMovieDetailPageEvent(widget.movieDetail));
                         },
                         child: const Icon(
                           Icons.arrow_back,
@@ -72,8 +67,7 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                   ],
                 ),
                 Container(
-                  margin: const EdgeInsets.fromLTRB(
-                      defaultMargin, 20, defaultMargin, 16),
+                  margin: const EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 16),
                   child: Text(
                     "Choose Date",
                     style: blackTextFont.copyWith(fontSize: 20),
@@ -89,8 +83,7 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                       return Container(
                         margin: EdgeInsets.only(
                           left: (index == 0 ? defaultMargin : 0),
-                          right:
-                              (index < dates!.length - 1 ? 16 : defaultMargin),
+                          right: (index < dates!.length - 1 ? 16 : defaultMargin),
                         ),
                         child: DateCard(
                           dates![index],
@@ -106,8 +99,7 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                   ),
                 ),
                 Container(
-                  margin:
-                      EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 16),
+                  margin: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 16),
                   child: Text(
                     "Choose Theater",
                     style: blackTextFont.copyWith(fontSize: 20),
@@ -121,39 +113,33 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                   alignment: Alignment.center,
                   child: BlocBuilder<UserBloc, UserState>(
                     builder: (_, userState) {
-                      return FloatingActionButton(
-                        backgroundColor:
-                            (isValid) ? mainColor : Color(0xffE4E4E4),
-                        child: Icon(
-                          Icons.arrow_forward,
-                          color: (isValid)
-                              ? Colors.white
-                              : Color.fromARGB(255, 116, 114, 114),
-                        ),
-                        onPressed: () {
-                          if (isValid) {
-                            context.read<PageBloc>().add(
-                                  GoToSelectSeatPageEvent(
-                                    TicketModel(
-                                      movieDetail: widget.movieDetail,
-                                      theater: selectedTheater,
-                                      time: DateTime(
-                                          selectedDate!.year,
-                                          selectedDate!.month,
-                                          selectedDate!.day,
-                                          selectedTime!),
-                                      bookingCode:
-                                          randomAlphaNumeric(12).toUpperCase(),
-                                      seats: null,
-                                      name: (userState as UserLoadedState)
-                                          .user
-                                          .name,
-                                      totalPrice: 0,
-                                    ),
-                                  ),
-                                );
-                          }
-                        },
+                      return Column(
+                        children: [
+                          FloatingActionButton(
+                            backgroundColor: (isValid) ? mainColor : Color(0xffE4E4E4),
+                            child: Icon(
+                              Icons.arrow_forward,
+                              color: (isValid) ? Colors.white : Color.fromARGB(255, 116, 114, 114),
+                            ),
+                            onPressed: () {
+                              if (isValid) {
+                                context.read<PageBloc>().add(
+                                      GoToSelectSeatPageEvent(
+                                        TicketModel(
+                                          movieDetail: widget.movieDetail,
+                                          theater: selectedTheater,
+                                          time: DateTime(selectedDate!.year, selectedDate!.month, selectedDate!.day, selectedTime!),
+                                          bookingCode: randomAlphaNumeric(12).toUpperCase(),
+                                          seats: null,
+                                          name: (userState as UserLoadedState).user.name,
+                                          totalPrice: 0,
+                                        ),
+                                      ),
+                                    );
+                              }
+                            },
+                          ),
+                        ],
                       );
                     },
                   ),
@@ -176,12 +162,10 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
     for (var theater in dummyTheaters) {
       widgets.add(
         Container(
-          margin:
-              const EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 16),
+          margin: const EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 16),
           child: Text(
             theater.name!,
-            style: blackTextFont.copyWith(
-                fontSize: 20, fontWeight: FontWeight.w400),
+            style: blackTextFont.copyWith(fontSize: 20, fontWeight: FontWeight.w400),
           ),
         ),
       );
@@ -202,10 +186,8 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                   text: "${schedule[index]}:00",
                   height: 50,
                   width: 100,
-                  isselected: selectedTheater == theater &&
-                      selectedTime == schedule[index],
-                  isEnabled: schedule[index] > DateTime.now().hour ||
-                      selectedDate!.day != DateTime.now().day,
+                  isselected: selectedTheater == theater && selectedTime == schedule[index],
+                  isEnabled: schedule[index] > DateTime.now().hour || selectedDate!.day != DateTime.now().day,
                   onTap: () {
                     setState(() {
                       selectedTheater = theater;

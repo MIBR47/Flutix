@@ -13,7 +13,7 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
     //
     // });
 
-    on<FetchMoviesEvent>((event, emit) async {
+    on<MoviesLoadedEvent>((event, emit) async {
       List<MovieModel> movies = await MovieServices.getMovies(1);
       emit(MovieLoadedState(movies));
     });
