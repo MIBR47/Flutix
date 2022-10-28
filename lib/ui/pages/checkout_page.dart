@@ -351,16 +351,16 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                             amount: -total,
                                             picture: widget.ticket.movieDetail!.posterPath!,
                                           );
-
-                                          TicketModel ticket = TicketModel(
-                                            movieDetail: widget.ticket.movieDetail!,
-                                            bookingCode: widget.ticket.bookingCode,
-                                            name: widget.ticket.name,
-                                            seats: widget.ticket.seats,
-                                            theater: widget.ticket.theater,
-                                            time: widget.ticket.time,
-                                            totalPrice: total,
-                                          );
+                                          TicketModel ticket = widget.ticket.copyWith(totalPrice: total);
+                                          // TicketModel ticket = TicketModel(
+                                          //   movieDetail: widget.ticket.movieDetail!,
+                                          //   bookingCode: widget.ticket.bookingCode,
+                                          //   name: widget.ticket.name,
+                                          //   seats: widget.ticket.seats,
+                                          //   theater: widget.ticket.theater,
+                                          //   time: widget.ticket.time,
+                                          //   totalPrice: total,
+                                          // );
                                           context.read<PageBloc>().add(GoToSuccessPageEvent(ticket, transaction));
                                         } else {}
                                       },

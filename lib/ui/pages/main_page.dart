@@ -70,7 +70,7 @@ class _MainPageState extends State<MainPage> {
             child: MoviePage(),
           ),
           Center(
-            child: Text("My Tickets"),
+            child: TicketPage(),
           ),
         ],
       );
@@ -94,10 +94,8 @@ class _MainPageState extends State<MainPage> {
               selectedItemColor: mainColor,
               unselectedItemColor: const Color(0xffE5E5E5),
               currentIndex: bottomNavBarIndex!,
-              selectedLabelStyle: GoogleFonts.raleway(
-                  fontSize: 13, fontWeight: FontWeight.w600),
-              unselectedLabelStyle: GoogleFonts.raleway(
-                  fontSize: 13, fontWeight: FontWeight.w600),
+              selectedLabelStyle: GoogleFonts.raleway(fontSize: 13, fontWeight: FontWeight.w600),
+              unselectedLabelStyle: GoogleFonts.raleway(fontSize: 13, fontWeight: FontWeight.w600),
               onTap: (index) {
                 setState(() {
                   bottomNavBarIndex = index;
@@ -110,9 +108,7 @@ class _MainPageState extends State<MainPage> {
                   icon: Container(
                     margin: const EdgeInsets.only(bottom: 6),
                     height: 20,
-                    child: Image.asset((bottomNavBarIndex == 0)
-                        ? "assets/ic_movie.png"
-                        : "assets/ic_movie_grey.png"),
+                    child: Image.asset((bottomNavBarIndex == 0) ? "assets/ic_movie.png" : "assets/ic_movie_grey.png"),
                   ),
                 ),
                 BottomNavigationBarItem(
@@ -120,9 +116,7 @@ class _MainPageState extends State<MainPage> {
                   icon: Container(
                     margin: const EdgeInsets.only(bottom: 6),
                     height: 20,
-                    child: Image.asset((bottomNavBarIndex == 1)
-                        ? "assets/ic_tickets.png"
-                        : "assets/ic_tickets_grey.png"),
+                    child: Image.asset((bottomNavBarIndex == 1) ? "assets/ic_tickets.png" : "assets/ic_tickets_grey.png"),
                   ),
                 ),
               ],

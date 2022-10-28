@@ -1,18 +1,25 @@
 part of "pages.dart";
 
-class MoviePage extends StatelessWidget {
+class MoviePage extends StatefulWidget {
   const MoviePage({super.key});
 
   @override
+  State<MoviePage> createState() => _MoviePageState();
+}
+
+class _MoviePageState extends State<MoviePage> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     bool uploadImageLoading = false;
     return ListView(
       children: [
         profile(uploadImageLoading, context),
         // * note: Now Playing
         Container(
-          margin:
-              const EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
+          margin: const EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
           child: Text(
             "Now Playing",
             style: blackTextFont.copyWith(
@@ -33,15 +40,11 @@ class MoviePage extends StatelessWidget {
                   itemCount: movies.length,
                   itemBuilder: (_, index) {
                     return Container(
-                      margin: EdgeInsets.only(
-                          left: (index == 0) ? defaultMargin : 0,
-                          right: (index == movies.length) ? defaultMargin : 16),
+                      margin: EdgeInsets.only(left: (index == 0) ? defaultMargin : 0, right: (index == movies.length) ? defaultMargin : 16),
                       child: MovieCard(
                         movie: movies[index],
                         ontap: () {
-                          context
-                              .read<PageBloc>()
-                              .add(GotoMovieDetailPageEvent(movies[index]));
+                          context.read<PageBloc>().add(GotoMovieDetailPageEvent(movies[index]));
                         },
                       ),
                     );
@@ -59,8 +62,7 @@ class MoviePage extends StatelessWidget {
         ),
         // * note: Browse movie
         Container(
-          margin:
-              const EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
+          margin: const EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
           child: Text(
             "Browse Movie",
             style: blackTextFont.copyWith(
@@ -76,10 +78,7 @@ class MoviePage extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: defaultMargin),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: List.generate(
-                      userState.user.selectedGenres!.length,
-                      (index) => BrowseButton(
-                          genre: userState.user.selectedGenres![index])),
+                  children: List.generate(userState.user.selectedGenres!.length, (index) => BrowseButton(genre: userState.user.selectedGenres![index])),
                 ),
               );
             } else {
@@ -92,8 +91,7 @@ class MoviePage extends StatelessWidget {
         ),
         // * note: coming soon
         Container(
-          margin:
-              const EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
+          margin: const EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
           child: Text(
             "Coming Soon",
             style: blackTextFont.copyWith(
@@ -114,9 +112,7 @@ class MoviePage extends StatelessWidget {
                   itemCount: movies.length,
                   itemBuilder: (_, index) {
                     return Container(
-                      margin: EdgeInsets.only(
-                          left: (index == 0) ? defaultMargin : 0,
-                          right: (index == movies.length) ? defaultMargin : 16),
+                      margin: EdgeInsets.only(left: (index == 0) ? defaultMargin : 0, right: (index == movies.length) ? defaultMargin : 16),
                       child: ComingSoonCard(
                         movie: movies[index],
                       ),
@@ -135,8 +131,7 @@ class MoviePage extends StatelessWidget {
         ),
         // * Note : Promo
         Container(
-          margin:
-              const EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
+          margin: const EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
           child: Text(
             "Get Luck Day",
             style: blackTextFont.copyWith(
@@ -146,12 +141,7 @@ class MoviePage extends StatelessWidget {
           ),
         ),
         Column(
-          children: dumyPromos
-              .map((e) => Padding(
-                  padding: const EdgeInsets.fromLTRB(
-                      defaultMargin, 0, defaultMargin, 16),
-                  child: PromoCard(e)))
-              .toList(),
+          children: dumyPromos.map((e) => Padding(padding: const EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 16), child: PromoCard(e))).toList(),
         ),
         const SizedBox(
           height: 100,
@@ -177,9 +167,7 @@ class MoviePage extends StatelessWidget {
             if (imageFileToUpload != null) {
               uploadImage(imageFileToUpload!).then(
                 (downloadURL) {
-                  context
-                      .read<UserBloc>()
-                      .add(UpdateDataEvent(profileImage: downloadURL));
+                  context.read<UserBloc>().add(UpdateDataEvent(profileImage: downloadURL));
                   imageFileToUpload = null;
                   loading = false;
                 },
@@ -213,8 +201,7 @@ class MoviePage extends StatelessWidget {
                             fit: BoxFit.cover,
                             image: (userState.user.profilePicture == "")
                                 ? const AssetImage("assets/user_pic.png")
-                                : NetworkImage(userState.user.profilePicture!)
-                                    as ImageProvider,
+                                : NetworkImage(userState.user.profilePicture!) as ImageProvider,
                           ),
                         ),
                       ),
@@ -228,9 +215,7 @@ class MoviePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: MediaQuery.of(context).size.width -
-                          2 * defaultMargin -
-                          78,
+                      width: MediaQuery.of(context).size.width - 2 * defaultMargin - 78,
                       child: Text(
                         userState.user.name!,
                         style: whiteTextFont.copyWith(fontSize: 18),
@@ -239,11 +224,8 @@ class MoviePage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      NumberFormat.currency(
-                              locale: "id_ID", decimalDigits: 0, symbol: "IDR ")
-                          .format(userState.user.balance!),
-                      style: yellowNumberFont.copyWith(
-                          fontSize: 14, fontWeight: FontWeight.w400),
+                      NumberFormat.currency(locale: "id_ID", decimalDigits: 0, symbol: "IDR ").format(userState.user.balance!),
+                      style: yellowNumberFont.copyWith(fontSize: 14, fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
