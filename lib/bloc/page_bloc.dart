@@ -33,10 +33,16 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       (event, emit) => emit(OnAccountInformationPageState(event.registrationData)),
     );
     on<GoToMainPageEvent>(
-      (event, emit) => emit(OnMainPageState()),
+      (event, emit) => emit(OnMainPageState(bottomNavBarIndex: event.bottomNavBarIndex, isExpired: event.isExpired)),
+    );
+    on<GotoProfilePage>(
+      (event, emit) => emit(const OnProfilePageState()),
     );
     on<GotoMovieDetailPageEvent>(
       (event, emit) => emit(OnMovieDetailPageState(event.movie)),
+    );
+    on<GotoTicketDetailPageEvent>(
+      (event, emit) => emit(OnTicketDetailPageState(event.ticket)),
     );
     on<GoToSelectSchedulePageEvent>(
       (event, emit) => emit(OnSelectSchedulePageState(event.movieDetail)),

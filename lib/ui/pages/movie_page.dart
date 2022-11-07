@@ -192,16 +192,21 @@ class _MoviePageState extends State<MoviePage> with AutomaticKeepAliveClientMixi
                               size: 50,
                             )
                           : Container(),
-                      Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: (userState.user.profilePicture == "")
-                                ? const AssetImage("assets/user_pic.png")
-                                : NetworkImage(userState.user.profilePicture!) as ImageProvider,
+                      GestureDetector(
+                        onTap: () {
+                          context.read<PageBloc>().add(const GotoProfilePage());
+                        },
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: (userState.user.profilePicture == "")
+                                  ? const AssetImage("assets/user_pic.png")
+                                  : NetworkImage(userState.user.profilePicture!) as ImageProvider,
+                            ),
                           ),
                         ),
                       ),

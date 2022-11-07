@@ -36,6 +36,16 @@ class GoToAccountInformationPageEvent extends PageEvent {
 }
 
 class GoToMainPageEvent extends PageEvent {
+  final int bottomNavBarIndex;
+  final bool isExpired;
+  const GoToMainPageEvent({this.bottomNavBarIndex = 0, this.isExpired = false});
+
+  @override
+  List<Object> get props => [bottomNavBarIndex, isExpired];
+}
+
+class GotoProfilePage extends PageEvent {
+  const GotoProfilePage();
   @override
   List<Object> get props => [];
 }
@@ -45,6 +55,13 @@ class GotoMovieDetailPageEvent extends PageEvent {
   const GotoMovieDetailPageEvent(this.movie);
   @override
   List<Object> get props => [movie];
+}
+
+class GotoTicketDetailPageEvent extends PageEvent {
+  final TicketModel ticket;
+  const GotoTicketDetailPageEvent(this.ticket);
+  @override
+  List<Object> get props => [ticket];
 }
 
 class GoToSelectSchedulePageEvent extends PageEvent {

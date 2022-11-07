@@ -16,6 +16,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:random_string/random_string.dart';
 
 import '../../bloc/bloc.dart';
@@ -35,3 +36,5 @@ part 'checkout_page.dart';
 part 'success_page.dart';
 part 'success_topup_page.dart';
 part 'ticket_page.dart';
+part 'ticket_detail_page.dart';
+part 'profile_page.dart';

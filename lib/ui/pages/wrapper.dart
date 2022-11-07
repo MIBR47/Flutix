@@ -16,6 +16,7 @@ class Wrapper extends StatelessWidget {
     } else {
       if (prevPageEvent is! GoToMainPageEvent) {
         context.read<UserBloc>().add(LoadUserEvent(firebaseUser.uid));
+        context.read<TicketBloc>().add(GetTicketsEvent(firebaseUser.uid));
 
         prevPageEvent = GoToMainPageEvent();
         // context.watch<PageBloc>().add(prevPageEvent);
@@ -36,6 +37,8 @@ class Wrapper extends StatelessWidget {
         return AccountConfirmationPage(registrationData: pageState.registrationData);
       } else if (pageState is OnMovieDetailPageState) {
         return MovieDetailPage(pageState.movie);
+      } else if (pageState is OnTicketDetailPageState) {
+        return TicketDetailPage(pageState.ticket);
       } else if (pageState is OnSelectSchedulePageState) {
         return SelectSchedulePage(pageState.movieDetail);
       } else if (pageState is OnSelectSeatPageState) {
@@ -44,6 +47,8 @@ class Wrapper extends StatelessWidget {
         return CheckoutPage(pageState.ticket);
       } else if (pageState is OnSuccessPageState) {
         return SuccessPage(pageState.ticket, pageState.transaction);
+      } else if (pageState is OnProfilePageState) {
+        return ProfilePage();
       } else {
         return const MainPage();
       }

@@ -41,6 +41,17 @@ class OnSplashPageState extends PageState {
 }
 
 class OnMainPageState extends PageState {
+  final int bottomNavBarIndex;
+  final bool isExpired;
+  const OnMainPageState({this.bottomNavBarIndex = 0, this.isExpired = false});
+
+  @override
+  List<Object> get props => [bottomNavBarIndex, isExpired];
+}
+
+class OnProfilePageState extends PageState {
+  const OnProfilePageState();
+
   @override
   List<Object> get props => [];
 }
@@ -50,6 +61,13 @@ class OnMovieDetailPageState extends PageState {
   const OnMovieDetailPageState(this.movie);
   @override
   List<Object> get props => [movie];
+}
+
+class OnTicketDetailPageState extends PageState {
+  final TicketModel ticket;
+  const OnTicketDetailPageState(this.ticket);
+  @override
+  List<Object> get props => [ticket];
 }
 
 class OnSelectSchedulePageState extends PageState {

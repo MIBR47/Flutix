@@ -6,3 +6,4 @@ import 'package:intl/intl.dart';
 part 'firebase_user_extension.dart';
 
 part 'date_time_extension.dart';
+part 'String_Extension.dart';

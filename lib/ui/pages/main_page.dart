@@ -1,7 +1,10 @@
 part of 'pages.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+  final int bottomNavBarIndex;
+  final bool isExpired;
+
+  const MainPage({this.bottomNavBarIndex = 1, this.isExpired = false, super.key});
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -65,12 +68,14 @@ class _MainPageState extends State<MainPage> {
         onPageChanged: ((index) {
           bottomNavBarIndex = index;
         }),
-        children: const [
+        children: [
           Center(
             child: MoviePage(),
           ),
           Center(
-            child: TicketPage(),
+            child: TicketPage(
+              isExpiredTicket: widget.isExpired,
+            ),
           ),
         ],
       );

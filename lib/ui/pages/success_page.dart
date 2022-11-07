@@ -95,13 +95,13 @@ class SuccessPage extends StatelessWidget {
   }
 
   Future<void> processingTicketOrder(BuildContext context) async {
-    // // *note: untuk update saldo user
-    // context.read<UserBloc>().add(PurchaseEvent(ticket.totalPrice));
-    // // // *note: untuk menyimpan detail pembelian ticket
-    // context.read<TicketBloc>().add(BuyTicketEvent(ticket, transaction.userID));
+    // *note: untuk update saldo user
+    context.read<UserBloc>().add(PurchaseEvent(ticket.totalPrice));
+    // *note: untuk menyimpan detail pembelian ticket
+    context.read<TicketBloc>().add(BuyTicketEvent(ticket, transaction.userID));
 
-    // // // *note: untuk menyimpan transaksi pembelian ticket
-    // // await TicketServices.saveTicket(transaction.userID, ticket);
-    // await FlutixTransactionServices.saveTransaction(transaction);
+    // *note: untuk menyimpan transaksi pembelian ticket
+    // await TicketServices.saveTicket(transaction.userID, ticket);
+    await FlutixTransactionServices.saveTransaction(transaction);
   }
 }

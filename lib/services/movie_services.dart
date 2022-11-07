@@ -1,8 +1,7 @@
 part of 'services.dart';
 
 class MovieServices {
-  static Future<List<MovieModel>> getMovies(int page,
-      {http.Client? client}) async {
+  static Future<List<MovieModel>> getMovies(int page, {http.Client? client}) async {
     String url =
         "https://api.themoviedb.org/3/discover/movie?api_key=$apiKey&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=$page&with_watch_monetization_types=flatrate";
     client ??= http.Client();
@@ -22,10 +21,8 @@ class MovieServices {
     return result.map((e) => MovieModel.fromJson(e)).toList();
   }
 
-  static Future<MovieDetailModel> getDetails(MovieModel movie,
-      {http.Client? client}) async {
-    String url =
-        "https://api.themoviedb.org/3/movie/${movie.id}?api_key=$apiKey&language=en-US";
+  static Future<MovieDetailModel> getDetails(MovieModel movie, {http.Client? client}) async {
+    String url = "https://api.themoviedb.org/3/movie/${movie.id}?api_key=$apiKey&language=en-US";
     client ??= http.Client();
 
     var response = await client.get(Uri.parse(url));
@@ -52,17 +49,42 @@ class MovieServices {
         break;
     }
 
-    return MovieDetailModel(movie,
-        language: language,
-        genres: genres
-            .map((e) => (e as Map<String, dynamic>)['name'].toString())
-            .toList());
+    return MovieDetailModel(movie, language: language, genres: genres.map((e) => (e as Map<String, dynamic>)['name'].toString()).toList());
   }
 
-  static Future<List<CreditModel>> getCredits(int movieID,
-      {http.Client? client}) async {
-    String url =
-        "https://api.themoviedb.org/3/movie/$movieID/credits?api_key=$apiKey&language=en-US";
+  static Future<MovieDetailModel> getDetailsByID(int movieID, {http.Client? client}) async {
+    String url = "https://api.themoviedb.org/3/movie/$movieID?api_key=$apiKey&language=en-US";
+    client ??= http.Client();
+
+    var response = await client.get(Uri.parse(url));
+    var data = jsonDecode(response.body);
+
+    List genres = (data as Map<String, dynamic>)['genres'];
+    String language;
+
+    switch (data['original_language']) {
+      case "ja":
+        language = "Japanese";
+        break;
+      case "id":
+        language = "Indonesian";
+        break;
+      case "ko":
+        language = "Korean";
+        break;
+      case "en":
+        language = "English";
+        break;
+      default:
+        language = "English";
+        break;
+    }
+
+    return MovieDetailModel(MovieModel.fromJson(data), language: language, genres: genres.map((e) => (e as Map<String, dynamic>)['name'].toString()).toList());
+  }
+
+  static Future<List<CreditModel>> getCredits(int movieID, {http.Client? client}) async {
+    String url = "https://api.themoviedb.org/3/movie/$movieID/credits?api_key=$apiKey&language=en-US";
     client ??= http.Client();
 
     var response = await client.get(Uri.parse(url));
