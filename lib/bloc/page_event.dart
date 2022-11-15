@@ -38,14 +38,14 @@ class GoToAccountInformationPageEvent extends PageEvent {
 class GoToMainPageEvent extends PageEvent {
   final int bottomNavBarIndex;
   final bool isExpired;
-  const GoToMainPageEvent({this.bottomNavBarIndex = 0, this.isExpired = false});
+  GoToMainPageEvent({this.bottomNavBarIndex = 0, this.isExpired = false});
 
   @override
   List<Object> get props => [bottomNavBarIndex, isExpired];
 }
 
-class GotoProfilePage extends PageEvent {
-  const GotoProfilePage();
+class GotoProfilePageEvent extends PageEvent {
+  const GotoProfilePageEvent();
   @override
   List<Object> get props => [];
 }

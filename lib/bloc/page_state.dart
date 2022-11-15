@@ -43,7 +43,7 @@ class OnSplashPageState extends PageState {
 class OnMainPageState extends PageState {
   final int bottomNavBarIndex;
   final bool isExpired;
-  const OnMainPageState({this.bottomNavBarIndex = 0, this.isExpired = false});
+  OnMainPageState({this.bottomNavBarIndex = 0, this.isExpired = false});
 
   @override
   List<Object> get props => [bottomNavBarIndex, isExpired];

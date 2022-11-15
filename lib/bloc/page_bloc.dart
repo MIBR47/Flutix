@@ -35,7 +35,7 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     on<GoToMainPageEvent>(
       (event, emit) => emit(OnMainPageState(bottomNavBarIndex: event.bottomNavBarIndex, isExpired: event.isExpired)),
     );
-    on<GotoProfilePage>(
+    on<GotoProfilePageEvent>(
       (event, emit) => emit(const OnProfilePageState()),
     );
     on<GotoMovieDetailPageEvent>(

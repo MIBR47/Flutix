@@ -1,11 +1,13 @@
 part of 'pages.dart';
 
 class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
+
   @override
-  _ProfilePageState createState() => _ProfilePageState();
+  ProfilePageState createState() => ProfilePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -22,7 +24,7 @@ class _ProfilePageState extends State<ProfilePage> {
         body: Stack(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+              padding: const EdgeInsets.symmetric(horizontal: defaultMargin),
               child: ListView(
                 children: <Widget>[
                   BlocBuilder<UserBloc, UserState>(
@@ -33,7 +35,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         return Column(
                           children: <Widget>[
                             Container(
-                              margin: EdgeInsets.only(top: 74, bottom: 10),
+                              margin: const EdgeInsets.only(top: 74, bottom: 10),
                               width: 120,
                               height: 120,
                               child: Stack(
@@ -55,7 +57,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         image: DecorationImage(
                                             image: (user.profilePicture! != "")
                                                 ? NetworkImage(user.profilePicture!) as ImageProvider
-                                                : AssetImage("assets/user_pic.png"),
+                                                : const AssetImage("assets/user_pic.png"),
                                             fit: BoxFit.cover)),
                                   ),
                                 ],
@@ -73,7 +75,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                             Container(
                               width: MediaQuery.of(context).size.width - 2 * defaultMargin,
-                              margin: EdgeInsets.only(top: 8, bottom: 30),
+                              margin: const EdgeInsets.only(top: 8, bottom: 30),
                               child: Text(
                                 user.email,
                                 textAlign: TextAlign.center,
@@ -82,8 +84,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             )
                           ],
                         );
-                      } else
-                        return SizedBox();
+                      } else {
+                        return const SizedBox();
+                      }
                     },
                   ),
                   Column(
@@ -97,7 +100,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: Row(
                             children: <Widget>[
                               SizedBox(width: 24, height: 24, child: Image.asset("assets/edit_profile.png")),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               Text(
@@ -109,7 +112,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 10, bottom: 16),
+                        margin: const EdgeInsets.only(top: 10, bottom: 16),
                         child: generateDashedDivider(MediaQuery.of(context).size.width - 2 * defaultMargin),
                       ),
                       GestureDetector(
@@ -119,7 +122,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: Row(
                           children: <Widget>[
                             SizedBox(width: 24, height: 24, child: Image.asset("assets/my_wallet.png")),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Text(
@@ -130,13 +133,13 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 10, bottom: 16),
+                        margin: const EdgeInsets.only(top: 10, bottom: 16),
                         child: generateDashedDivider(MediaQuery.of(context).size.width - 2 * defaultMargin),
                       ),
                       Row(
                         children: <Widget>[
                           SizedBox(width: 24, height: 24, child: Image.asset("assets/language.png")),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Text(
@@ -146,13 +149,13 @@ class _ProfilePageState extends State<ProfilePage> {
                         ],
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 10, bottom: 16),
+                        margin: const EdgeInsets.only(top: 10, bottom: 16),
                         child: generateDashedDivider(MediaQuery.of(context).size.width - 2 * defaultMargin),
                       ),
                       Row(
                         children: <Widget>[
                           SizedBox(width: 24, height: 24, child: Image.asset("assets/help_centre.png")),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Text(
@@ -162,13 +165,13 @@ class _ProfilePageState extends State<ProfilePage> {
                         ],
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 10, bottom: 16),
+                        margin: const EdgeInsets.only(top: 10, bottom: 16),
                         child: generateDashedDivider(MediaQuery.of(context).size.width - 2 * defaultMargin),
                       ),
                       Row(
                         children: <Widget>[
                           SizedBox(width: 24, height: 24, child: Image.asset("assets/rate.png")),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Text(
@@ -178,13 +181,15 @@ class _ProfilePageState extends State<ProfilePage> {
                         ],
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 10, bottom: 16),
+                        margin: const EdgeInsets.only(top: 10, bottom: 16),
                         child: generateDashedDivider(MediaQuery.of(context).size.width - 2 * defaultMargin),
                       ),
                       GestureDetector(
                         onTap: () async {
+                          // await AuthServices.signOut();
+
+                          context.read<UserBloc>().add(SignOutEvent());
                           await AuthServices.signOut();
-                          // context.bloc<UserBloc>().add(SignOut());
                         },
                         child: Row(
                           children: <Widget>[
@@ -194,7 +199,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 child: Stack(
                                   children: <Widget>[
                                     Container(
-                                      margin: EdgeInsets.fromLTRB(5, 3, 9, 3),
+                                      margin: const EdgeInsets.fromLTRB(5, 3, 9, 3),
                                       color: accentColor2,
                                     ),
                                     Icon(
@@ -204,7 +209,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     ),
                                   ],
                                 )),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Text(
@@ -215,7 +220,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 10, bottom: 16),
+                        margin: const EdgeInsets.only(top: 10, bottom: 16),
                         child: generateDashedDivider(MediaQuery.of(context).size.width - 2 * defaultMargin),
                       ),
                     ],
@@ -225,12 +230,12 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             SafeArea(
                 child: Container(
-              margin: EdgeInsets.only(top: 20, left: defaultMargin),
+              margin: const EdgeInsets.only(top: 20, left: defaultMargin),
               child: GestureDetector(
                 onTap: () {
                   context.read<PageBloc>().add(GoToMainPageEvent());
                 },
-                child: Icon(
+                child: const Icon(
                   Icons.arrow_back,
                   color: Colors.black,
                 ),

@@ -74,7 +74,7 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(bottom: 24),
+                  margin: const EdgeInsets.only(bottom: 24),
                   height: 90,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
@@ -99,14 +99,14 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 16),
+                  margin: const EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 16),
                   child: Text(
                     "Choose Theater",
                     style: blackTextFont.copyWith(fontSize: 20),
                   ),
                 ),
                 generateTimeTable(),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Align(
@@ -116,10 +116,10 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                       return Column(
                         children: [
                           FloatingActionButton(
-                            backgroundColor: (isValid) ? mainColor : Color(0xffE4E4E4),
+                            backgroundColor: (isValid) ? mainColor : const Color(0xffE4E4E4),
                             child: Icon(
                               Icons.arrow_forward,
-                              color: (isValid) ? Colors.white : Color.fromARGB(255, 116, 114, 114),
+                              color: (isValid) ? Colors.white : const Color.fromARGB(255, 116, 114, 114),
                             ),
                             onPressed: () {
                               if (isValid) {

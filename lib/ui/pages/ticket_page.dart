@@ -22,6 +22,7 @@ class _TicketPageState extends State<TicketPage> with AutomaticKeepAliveClientMi
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: Stack(
         children: [
@@ -29,7 +30,7 @@ class _TicketPageState extends State<TicketPage> with AutomaticKeepAliveClientMi
           BlocBuilder<TicketBloc, TicketState>(
             builder: (_, ticketstate) {
               return Container(
-                margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+                margin: const EdgeInsets.symmetric(horizontal: defaultMargin),
                 child: TicketViewer(
                   ixExpiredTickets
                       ? ticketstate.tickets.where((ticket) => ticket.time!.isBefore(DateTime.now())).toList()
@@ -54,7 +55,7 @@ class _TicketPageState extends State<TicketPage> with AutomaticKeepAliveClientMi
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Container(
-                      margin: EdgeInsets.only(left: 24, bottom: 32),
+                      margin: const EdgeInsets.only(left: 24, bottom: 32),
                       child: Text(
                         'My Tickets',
                         style: whiteTextFont.copyWith(fontSize: 20),
@@ -78,10 +79,10 @@ class _TicketPageState extends State<TicketPage> with AutomaticKeepAliveClientMi
                                   "Newest",
                                   style: whiteTextFont.copyWith(
                                     fontSize: 16,
-                                    color: !ixExpiredTickets ? Colors.white : Color(0xFF6F78E),
+                                    color: !ixExpiredTickets ? Colors.white : const Color(0xFF6F78E),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 15,
                                 ),
                                 Container(
@@ -108,10 +109,10 @@ class _TicketPageState extends State<TicketPage> with AutomaticKeepAliveClientMi
                                   "Oldest",
                                   style: whiteTextFont.copyWith(
                                     fontSize: 16,
-                                    color: ixExpiredTickets ? Colors.white : Color(0xFF6F78E),
+                                    color: ixExpiredTickets ? Colors.white : const Color(0xFF6F78E),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 15,
                                 ),
                                 Container(
@@ -159,79 +160,125 @@ class TicketViewer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(tickets);
     var sortedTickets = tickets;
     sortedTickets.sort((ticket2, ticket1) => ticket1.time!.compareTo(ticket2.time!));
-    return ListView.builder(
-      itemCount: sortedTickets.length,
-      itemBuilder: (_, index) {
-        return GestureDetector(
-          onTap: () {
-            context.read<PageBloc>().add(GotoTicketDetailPageEvent(sortedTickets[index]));
-          },
-          child: Container(
-            margin: EdgeInsets.only(top: index == 0 ? 133 : 20),
-            child: Row(
-              children: [
-                Container(
-                  width: 70,
-                  height: 90,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    image: DecorationImage(
-                      image: NetworkImage('${imageBaseURL}w500${sortedTickets[index].movieDetail!.posterPath!}'),
-                      fit: BoxFit.cover,
+    return tickets.isEmpty
+        ? tickets.where((ticket) => ticket.time!.isBefore(DateTime.now())).isEmpty
+            ? Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "oops, you don't have a movie ticket",
+                      style: blackTextFont.copyWith(
+                        color: accentColor1,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
+                    const SizedBox(height: 6),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(backgroundColor: accentColor1, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
+                      onPressed: () {},
+                      child: Text(
+                        "Buy Ticket Now",
+                        style: blackTextFont.copyWith(color: accentColor2, fontWeight: FontWeight.w500),
+                      ),
+                    )
+                  ],
                 ),
-                SizedBox(
-                  width: 16,
+              )
+            : Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      MdiIcons.archiveOffOutline,
+                      color: accentColor1,
+                      size: 50,
+                    ),
+                    Text(
+                      "Is Empty",
+                      style: blackTextFont.copyWith(
+                        color: accentColor1,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width - (2 * defaultMargin) - 70 - 16,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+              )
+        : ListView.builder(
+            itemCount: sortedTickets.length,
+            itemBuilder: (_, index) {
+              return GestureDetector(
+                onTap: () {
+                  context.read<PageBloc>().add(GotoTicketDetailPageEvent(sortedTickets[index]));
+                },
+                child: Container(
+                  margin: EdgeInsets.only(top: index == 0 ? 133 : 20),
+                  child: Row(
                     children: [
-                      Text(
-                        sortedTickets[index].movieDetail!.title!,
-                        style: blackTextFont.copyWith(fontSize: 18),
-                        maxLines: 2,
-                        overflow: TextOverflow.clip,
+                      Container(
+                        width: 70,
+                        height: 90,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          image: DecorationImage(
+                            image: NetworkImage('${imageBaseURL}w500${sortedTickets[index].movieDetail!.posterPath!}'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 16,
                       ),
                       SizedBox(
-                        height: 6,
-                      ),
-                      Text(
-                        sortedTickets[index].theater!.name!,
-                        style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
-                        maxLines: 2,
-                        overflow: TextOverflow.clip,
-                      ),
-                      SizedBox(
-                        height: 6,
-                      ),
-                      Text(
-                        sortedTickets[index].time!.time,
-                        style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
-                        maxLines: 2,
-                        overflow: TextOverflow.clip,
-                      ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          sortedTickets[index].time!.date,
-                          style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
-                          maxLines: 2,
-                          overflow: TextOverflow.clip,
+                        width: MediaQuery.of(context).size.width - (2 * defaultMargin) - 70 - 16,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              sortedTickets[index].movieDetail!.title!,
+                              style: blackTextFont.copyWith(fontSize: 18),
+                              maxLines: 2,
+                              overflow: TextOverflow.clip,
+                            ),
+                            const SizedBox(
+                              height: 6,
+                            ),
+                            Text(
+                              sortedTickets[index].theater!.name!,
+                              style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+                              maxLines: 2,
+                              overflow: TextOverflow.clip,
+                            ),
+                            const SizedBox(
+                              height: 6,
+                            ),
+                            Text(
+                              sortedTickets[index].time!.time,
+                              style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+                              maxLines: 2,
+                              overflow: TextOverflow.clip,
+                            ),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                sortedTickets[index].time!.date,
+                                style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+                                maxLines: 2,
+                                overflow: TextOverflow.clip,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
+              );
+            },
+          );
   }
 }

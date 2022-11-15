@@ -1,4 +1,3 @@
-// ignore: file_names
 part of 'pages.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -107,8 +106,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 image: DecorationImage(
                   image: (widget.registrationData.profileImage == null)
                       ? const AssetImage("assets/user_pic.png")
-                      : FileImage(widget.registrationData.profileImage!)
-                          as ImageProvider,
+                      : FileImage(widget.registrationData.profileImage!) as ImageProvider,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -228,10 +226,7 @@ class _SignUpPageState extends State<SignUpPage> {
       elevation: 2,
       child: const Icon(Icons.arrow_forward),
       onPressed: () {
-        if (!(nameController.text.trim() != "" &&
-            emailController.text.trim() != "" &&
-            passwordController.text != "" &&
-            retypePasswordController.text != "")) {
+        if (!(nameController.text.trim() != "" && emailController.text.trim() != "" && passwordController.text != "" && retypePasswordController.text != "")) {
           Flushbar(
             duration: const Duration(milliseconds: 1500),
             flushbarPosition: FlushbarPosition.TOP,
@@ -245,9 +240,7 @@ class _SignUpPageState extends State<SignUpPage> {
             widget.registrationData.email = emailController.text.trim();
             widget.registrationData.password = passwordController.text.trim();
 
-            context
-                .read<PageBloc>()
-                .add(GoToPreferencesPageEvent(widget.registrationData));
+            context.read<PageBloc>().add(GoToPreferencesPageEvent(widget.registrationData));
           } else {
             Flushbar(
               duration: const Duration(milliseconds: 1500),

@@ -48,9 +48,14 @@ class Wrapper extends StatelessWidget {
       } else if (pageState is OnSuccessPageState) {
         return SuccessPage(pageState.ticket, pageState.transaction);
       } else if (pageState is OnProfilePageState) {
-        return ProfilePage();
+        return const ProfilePage();
+      } else if (pageState is OnMainPageState) {
+        return MainPage(
+          bottomNavBarIndex: pageState.bottomNavBarIndex,
+          isExpired: pageState.isExpired,
+        );
       } else {
-        return const MainPage();
+        return MainPage();
       }
     });
   }

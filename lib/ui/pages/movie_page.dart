@@ -194,7 +194,7 @@ class _MoviePageState extends State<MoviePage> with AutomaticKeepAliveClientMixi
                           : Container(),
                       GestureDetector(
                         onTap: () {
-                          context.read<PageBloc>().add(const GotoProfilePage());
+                          context.read<PageBloc>().add(const GotoProfilePageEvent());
                         },
                         child: Container(
                           width: 50,

@@ -3,7 +3,7 @@ part of 'pages.dart';
 class TicketDetailPage extends StatelessWidget {
   final TicketModel ticket;
 
-  TicketDetailPage(this.ticket);
+  const TicketDetailPage(this.ticket, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +17,14 @@ class TicketDetailPage extends StatelessWidget {
         }
       },
       child: Scaffold(
-          backgroundColor: Color(0xFFF6F7F9),
+          backgroundColor: const Color(0xFFF6F7F9),
           body: Container(
-            padding: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 0),
+            padding: const EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 0),
             child: ListView(
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Stack(
@@ -35,7 +35,7 @@ class TicketDetailPage extends StatelessWidget {
                             onTap: () {
                               context.read<PageBloc>().add(GoToMainPageEvent(bottomNavBarIndex: 1, isExpired: ticket.time!.isBefore(DateTime.now())));
                             },
-                            child: Icon(
+                            child: const Icon(
                               Icons.arrow_back,
                               color: Colors.black,
                             ),
@@ -50,18 +50,18 @@ class TicketDetailPage extends StatelessWidget {
                       ],
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 20),
+                      margin: const EdgeInsets.only(top: 20),
                       height: 170,
                       decoration: BoxDecoration(
                           image: DecorationImage(image: NetworkImage("${imageBaseURL}w500${ticket.movieDetail!.backdropPath}"), fit: BoxFit.cover),
-                          borderRadius: BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12))),
+                          borderRadius: const BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12))),
                     ),
                     ClipPath(
                       clipper: TicketTopClipper(),
                       child: Container(
                         width: double.infinity,
                         color: Colors.white,
-                        padding: EdgeInsets.fromLTRB(20, 16, 20, 0),
+                        padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -71,18 +71,18 @@ class TicketDetailPage extends StatelessWidget {
                               overflow: TextOverflow.clip,
                               style: blackTextFont.copyWith(fontSize: 18),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 6,
                             ),
                             Text(
                               ticket.movieDetail!.genresAndLanguage,
                               style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 6,
                             ),
                             RatingStars(voteAverage: ticket.movieDetail!.voteAverage!),
-                            SizedBox(
+                            const SizedBox(
                               height: 16,
                             ),
                             Row(
@@ -103,7 +103,7 @@ class TicketDetailPage extends StatelessWidget {
                                 )
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 9,
                             ),
                             Row(
@@ -119,7 +119,7 @@ class TicketDetailPage extends StatelessWidget {
                                 )
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 9,
                             ),
                             Row(
@@ -140,7 +140,7 @@ class TicketDetailPage extends StatelessWidget {
                                 )
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 9,
                             ),
                             Row(
@@ -156,7 +156,7 @@ class TicketDetailPage extends StatelessWidget {
                                 )
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             generateDashedDivider(MediaQuery.of(context).size.width - 2 * defaultMargin - 40)
@@ -168,7 +168,7 @@ class TicketDetailPage extends StatelessWidget {
                       clipper: TicketBottomClipper(),
                       child: Container(
                         width: double.infinity,
-                        padding: EdgeInsets.fromLTRB(20, 16, 20, 16),
+                        padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
                         color: Colors.white,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -184,7 +184,7 @@ class TicketDetailPage extends StatelessWidget {
                                   ticket.name!,
                                   style: whiteNumberFont.copyWith(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w400),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 8,
                                 ),
                                 Text(
@@ -201,7 +201,7 @@ class TicketDetailPage extends StatelessWidget {
                               version: 6,
                               foregroundColor: Colors.black,
                               errorCorrectionLevel: QrErrorCorrectLevel.M,
-                              padding: EdgeInsets.all(0),
+                              padding: const EdgeInsets.all(0),
                               size: 100,
                               data: ticket.bookingCode,
                             )
@@ -209,7 +209,7 @@ class TicketDetailPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     )
                   ],

@@ -22,14 +22,14 @@ class SuccessTopupPage extends StatelessWidget {
                       Container(
                         width: 150,
                         height: 150,
-                        margin: EdgeInsets.only(bottom: 70),
-                        decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/top_up_done.png"))),
+                        margin: const EdgeInsets.only(bottom: 70),
+                        decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/top_up_done.png"))),
                       ),
                       Text(
                         "Emmy Yummy!",
                         style: blackTextFont.copyWith(fontSize: 20),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 16,
                       ),
                       Text(
