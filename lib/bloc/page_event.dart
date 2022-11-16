@@ -88,21 +88,34 @@ class GoToCheckoutPageEvent extends PageEvent {
 class GoToSuccessPageEvent extends PageEvent {
   final TicketModel ticket;
   final FlutixTransactionModel transaction;
-  const GoToSuccessPageEvent(this.ticket, this.transaction);
+
+  const GoToSuccessPageEvent(
+    this.ticket,
+    this.transaction,
+  );
   @override
   List<Object> get props => [ticket, transaction];
 }
 
 class GoToSuccessTopupPageEvent extends PageEvent {
   final FlutixTransactionModel transaction;
-  const GoToSuccessTopupPageEvent(this.transaction);
+  final PageEvent pageEvent;
+
+  const GoToSuccessTopupPageEvent(this.transaction, this.pageEvent);
   @override
-  List<Object> get props => [transaction];
+  List<Object> get props => [transaction, pageEvent];
 }
 
 class GoToTopupPageEvent extends PageEvent {
   final PageEvent pageEvent;
   const GoToTopupPageEvent(this.pageEvent);
+  @override
+  List<Object> get props => [pageEvent];
+}
+
+class GoToWalletPageEvent extends PageEvent {
+  final PageEvent pageEvent;
+  const GoToWalletPageEvent(this.pageEvent);
   @override
   List<Object> get props => [pageEvent];
 }

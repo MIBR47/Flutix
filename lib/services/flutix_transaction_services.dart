@@ -26,8 +26,8 @@ class FlutixTransactionServices {
     return documents
         .map(
           (element) => FlutixTransactionModel(
-            title: element['userID'],
-            userID: element['title'],
+            title: element['title'],
+            userID: element['userID'],
             subtitle: element['subtitle'],
             time: DateTime.fromMicrosecondsSinceEpoch(
               element['time'],

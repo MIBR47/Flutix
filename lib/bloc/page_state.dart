@@ -94,6 +94,7 @@ class OnCheckOutPageState extends PageState {
 class OnSuccessPageState extends PageState {
   final TicketModel ticket;
   final FlutixTransactionModel transaction;
+
   const OnSuccessPageState(this.ticket, this.transaction);
   @override
   List<Object> get props => [ticket, transaction];
@@ -101,14 +102,24 @@ class OnSuccessPageState extends PageState {
 
 class OnSuccessTopupPageState extends PageState {
   final FlutixTransactionModel transaction;
-  const OnSuccessTopupPageState(this.transaction);
+  final PageEvent pageEvent;
+
+  const OnSuccessTopupPageState(this.transaction, this.pageEvent);
   @override
-  List<Object> get props => [transaction];
+  List<Object> get props => [transaction, pageEvent];
 }
 
 class OnTopupPageState extends PageState {
   final PageEvent pageEvent;
   const OnTopupPageState(this.pageEvent);
+  @override
+  List<Object> get props => [pageEvent];
+}
+
+class OnWalletPageState extends PageState {
+  final PageEvent pageEvent;
+
+  const OnWalletPageState(this.pageEvent);
   @override
   List<Object> get props => [pageEvent];
 }

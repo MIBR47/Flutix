@@ -164,6 +164,7 @@ class _TopUpPageState extends State<TopUpPage> {
                                                   subtitle:
                                                       "${DateTime.now().shortDayName}, ${DateTime.now().day} ${DateTime.now().monthName} ${DateTime.now().year}",
                                                   time: DateTime.now()),
+                                              widget.pageEvent,
                                             ),
                                           );
                                     }

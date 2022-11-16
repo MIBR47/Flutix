@@ -2,7 +2,8 @@ part of 'pages.dart';
 
 class SuccessTopupPage extends StatelessWidget {
   final FlutixTransactionModel transaction;
-  const SuccessTopupPage(this.transaction, {super.key});
+  final PageEvent pageEvent;
+  const SuccessTopupPage(this.transaction, this.pageEvent, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +55,7 @@ class SuccessTopupPage extends StatelessWidget {
                             style: whiteTextFont.copyWith(fontSize: 16),
                           ),
                           onPressed: () {
-                            context.read<PageBloc>().add(GoToMainPageEvent());
+                            context.read<PageBloc>().add(GoToWalletPageEvent(pageEvent));
                           },
                         ),
                       ),
