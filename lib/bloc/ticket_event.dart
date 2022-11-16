@@ -7,6 +7,11 @@ abstract class TicketEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class TicketsLoadedEvent extends TicketEvent {
+  @override
+  List<Object> get props => [];
+}
+
 class GetTicketsEvent extends TicketEvent {
   final String userID;
 

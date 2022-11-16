@@ -31,11 +31,16 @@ class _TicketPageState extends State<TicketPage> with AutomaticKeepAliveClientMi
             builder: (_, ticketstate) {
               return Container(
                 margin: const EdgeInsets.symmetric(horizontal: defaultMargin),
-                child: TicketViewer(
-                  ixExpiredTickets
-                      ? ticketstate.tickets.where((ticket) => ticket.time!.isBefore(DateTime.now())).toList()
-                      : ticketstate.tickets.where((ticket) => !ticket.time!.isBefore(DateTime.now())).toList(),
-                ),
+                child: ticketstate is TicketLoadedState
+                    ? TicketViewer(
+                        ixExpiredTickets
+                            ? ticketstate.tickets.where((ticket) => ticket.time!.isBefore(DateTime.now())).toList()
+                            : ticketstate.tickets.where((ticket) => !ticket.time!.isBefore(DateTime.now())).toList(),
+                      )
+                    : SpinKitFadingCircle(
+                        color: mainColor,
+                        size: 50,
+                      ),
               );
             },
           ),
@@ -79,7 +84,7 @@ class _TicketPageState extends State<TicketPage> with AutomaticKeepAliveClientMi
                                   "Newest",
                                   style: whiteTextFont.copyWith(
                                     fontSize: 16,
-                                    color: !ixExpiredTickets ? Colors.white : const Color(0xFF6F78E),
+                                    color: !ixExpiredTickets ? Colors.white : accentColor2,
                                   ),
                                 ),
                                 const SizedBox(
@@ -109,7 +114,7 @@ class _TicketPageState extends State<TicketPage> with AutomaticKeepAliveClientMi
                                   "Oldest",
                                   style: whiteTextFont.copyWith(
                                     fontSize: 16,
-                                    color: ixExpiredTickets ? Colors.white : const Color(0xFF6F78E),
+                                    color: ixExpiredTickets ? Colors.white : accentColor2,
                                   ),
                                 ),
                                 const SizedBox(
@@ -160,9 +165,9 @@ class TicketViewer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(tickets);
     var sortedTickets = tickets;
     sortedTickets.sort((ticket2, ticket1) => ticket1.time!.compareTo(ticket2.time!));
+    // sortedTickets.sort((ticket2, ticket1) => ticket1.time!.time.compareTo(ticket2.time!.time));
     if (tickets.isEmpty) {
       return tickets.where((ticket) => ticket.time!.isBefore(DateTime.now())).isEmpty
           ? Center(
@@ -183,7 +188,7 @@ class TicketViewer extends StatelessWidget {
                     onPressed: () {},
                     child: Text(
                       "Buy Ticket Now",
-                      style: blackTextFont.copyWith(color: accentColor2, fontWeight: FontWeight.w500),
+                      style: blackTextFont.copyWith(color: Colors.white, fontWeight: FontWeight.w500),
                     ),
                   )
                 ],

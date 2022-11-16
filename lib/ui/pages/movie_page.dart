@@ -34,7 +34,7 @@ class _MoviePageState extends State<MoviePage> with AutomaticKeepAliveClientMixi
             builder: (_, movieState) {
               if (movieState is MovieLoadedState) {
                 List<MovieModel> movies = movieState.movies.sublist(0, 10);
-                print(movies[1].title);
+
                 return ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: movies.length,

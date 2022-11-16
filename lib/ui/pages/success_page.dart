@@ -60,7 +60,9 @@ class SuccessPage extends StatelessWidget {
                             "My Tickets",
                             style: whiteTextFont.copyWith(fontSize: 16),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            context.read<PageBloc>().add(GoToMainPageEvent(bottomNavBarIndex: 1));
+                          },
                         ),
                       ),
                       Row(
