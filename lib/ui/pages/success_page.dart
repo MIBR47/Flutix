@@ -9,12 +9,13 @@ class SuccessPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        context.read<PageBloc>().add(GoToCheckoutPageEvent(ticket));
-        if (Navigator.of(context).userGestureInProgress) {
-          return Future<bool>.value(true);
-        } else {
-          return Future<bool>.value(false);
-        }
+        // context.read<PageBloc>().add(GoToCheckoutPageEvent(ticket));
+        // if (Navigator.of(context).userGestureInProgress) {
+        //   return Future<bool>.value(true);
+        // } else {
+        //   return Future<bool>.value(false);
+        // }
+        return Future<bool>.value(false);
       },
       child: Scaffold(
         body: FutureBuilder(

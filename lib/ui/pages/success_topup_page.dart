@@ -90,5 +90,11 @@ class SuccessTopupPage extends StatelessWidget {
     );
   }
 
-  Future<void> processingTopUp(BuildContext context) async {}
+  Future<void> processingTopUp(BuildContext context) async {
+    // *note: untuk update saldo user
+    context.read<UserBloc>().add(TopupEvent(transaction.amount));
+    // *note: untuk menyimpan transaksi top up
+    // await TicketServices.saveTicket(transaction.userID, ticket);
+    await FlutixTransactionServices.saveTransaction(transaction);
+  }
 }

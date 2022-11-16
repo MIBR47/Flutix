@@ -105,3 +105,10 @@ class OnSuccessTopupPageState extends PageState {
   @override
   List<Object> get props => [transaction];
 }
+
+class OnTopupPageState extends PageState {
+  final PageEvent pageEvent;
+  const OnTopupPageState(this.pageEvent);
+  @override
+  List<Object> get props => [pageEvent];
+}

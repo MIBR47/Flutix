@@ -99,3 +99,10 @@ class GoToSuccessTopupPageEvent extends PageEvent {
   @override
   List<Object> get props => [transaction];
 }
+
+class GoToTopupPageEvent extends PageEvent {
+  final PageEvent pageEvent;
+  const GoToTopupPageEvent(this.pageEvent);
+  @override
+  List<Object> get props => [pageEvent];
+}

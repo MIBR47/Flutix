@@ -51,7 +51,7 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ),
                 onPressed: () async {
-                  context.read<PageBloc>().add(const GotoProfilePageEvent());
+                  context.read<PageBloc>().add(GoToTopupPageEvent(GoToMainPageEvent()));
                   // AuthServices.signOut();
                 },
               ),

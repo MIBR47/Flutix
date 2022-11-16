@@ -61,5 +61,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     on<GoToSuccessTopupPageEvent>(
       (event, emit) => emit(OnSuccessTopupPageState(event.transaction)),
     );
+    on<GoToTopupPageEvent>(
+      (event, emit) => emit(OnTopupPageState(event.pageEvent)),
+    );
   }
 }
