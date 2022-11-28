@@ -38,6 +38,10 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     on<GotoProfilePageEvent>(
       (event, emit) => emit(const OnProfilePageState()),
     );
+
+    on<GotoEditProfilePageEvent>(
+      (event, emit) => emit(OnEdiProfilePageState(event.user)),
+    );
     on<GotoMovieDetailPageEvent>(
       (event, emit) => emit(OnMovieDetailPageState(event.movie)),
     );

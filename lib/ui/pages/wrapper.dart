@@ -55,6 +55,8 @@ class Wrapper extends StatelessWidget {
         return WalletPage(pageState.pageEvent);
       } else if (pageState is OnProfilePageState) {
         return const ProfilePage();
+      } else if (pageState is OnEdiProfilePageState) {
+        return EditProfilePage(pageState.user);
       } else if (pageState is OnMainPageState) {
         return MainPage(
           bottomNavBarIndex: pageState.bottomNavBarIndex,

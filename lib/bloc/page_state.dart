@@ -43,7 +43,7 @@ class OnSplashPageState extends PageState {
 class OnMainPageState extends PageState {
   final int bottomNavBarIndex;
   final bool isExpired;
-  OnMainPageState({this.bottomNavBarIndex = 0, this.isExpired = false});
+  const OnMainPageState({this.bottomNavBarIndex = 0, this.isExpired = false});
 
   @override
   List<Object> get props => [bottomNavBarIndex, isExpired];
@@ -54,6 +54,14 @@ class OnProfilePageState extends PageState {
 
   @override
   List<Object> get props => [];
+}
+
+class OnEdiProfilePageState extends PageState {
+  final UserModel user;
+  const OnEdiProfilePageState(this.user);
+
+  @override
+  List<Object> get props => [user];
 }
 
 class OnMovieDetailPageState extends PageState {

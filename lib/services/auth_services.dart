@@ -15,8 +15,7 @@ class AuthServices {
     try {
       // if (email != '') {
 
-      UserCredential result = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       // }
 
       // UserModel user = result.user.convertToUser(
@@ -49,11 +48,9 @@ class AuthServices {
     }
   }
 
-  static Future<SignInSignUpResult> signIn(
-      String email, String password) async {
+  static Future<SignInSignUpResult> signIn(String email, String password) async {
     try {
-      UserCredential result = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
+      UserCredential result = await _auth.signInWithEmailAndPassword(email: email, password: password);
 
       UserModel userFromModel = await result.user!.fromFireStore();
       return SignInSignUpResult(user: userFromModel);
@@ -64,6 +61,10 @@ class AuthServices {
 
   static Future<void> signOut() async {
     await _auth.signOut();
+  }
+
+  static Future<void> resetPassword(String email) async {
+    await _auth.sendPasswordResetEmail(email: email);
   }
 
   static Stream<User?> get userStream => _auth.authStateChanges();

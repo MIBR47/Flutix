@@ -95,7 +95,9 @@ class ProfilePageState extends State<ProfilePage> {
                       BlocBuilder<UserBloc, UserState>(
                         builder: (_, userState) => GestureDetector(
                           onTap: () {
-                            // context.read<PageBloc>().add(GoToEditProfilePage((userState as UserLoaded).user));
+                            if (userState is UserLoadedState) {
+                              context.read<PageBloc>().add(GotoEditProfilePageEvent(userState.user));
+                            }
                           },
                           child: Row(
                             children: <Widget>[

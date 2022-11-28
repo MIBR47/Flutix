@@ -50,6 +50,14 @@ class GotoProfilePageEvent extends PageEvent {
   List<Object> get props => [];
 }
 
+class GotoEditProfilePageEvent extends PageEvent {
+  final UserModel user;
+  const GotoEditProfilePageEvent(this.user);
+
+  @override
+  List<Object> get props => [user];
+}
+
 class GotoMovieDetailPageEvent extends PageEvent {
   final MovieModel movie;
   const GotoMovieDetailPageEvent(this.movie);
